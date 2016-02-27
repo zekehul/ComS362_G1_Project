@@ -1,24 +1,27 @@
 package src;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Town implements TownInterface {
+	
+	private DatabaseSupport db = null;
 	
 	@Override
 	public boolean addSensor(String street, int section, int threshold) {
-		// TODO Auto-generated method stub
-		return false;
+		Sensor s = new Sensor();
+		s.setStreetName(street);
+		s.setSection(section);
+		s.setThreshold(threshold);
+		s.setValue(0);
+		return this.getDB().createSensor(s);
 	}
 	@Override
-	public boolean deleteSensor(String sid) {
-		// TODO Auto-generated method stub
-		return false;
+	public int deleteSensor(String sid) {
+		return this.getDB().deleteSensor(sid);
 	}
 	@Override
-	public boolean updateStrain(String street, int section, int newStrain) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateStrain(String sid, int newStrain) {
+		Sensor s = this.getDB().getSensor(sid);
+		s.updateStrain(newStrain);
+		return this.getDB().putSensor(s);
 	}
 	@Override
 	public boolean resetSensor(String sid) {
@@ -51,5 +54,13 @@ public class Town implements TownInterface {
 		return false;
 	}
 	
+	private DatabaseSupport getDB(){
+		if(db == null){
+			return new DatabaseSupport();
+		}
+		else{
+			return db;
+		}
+	}
 	
 }
