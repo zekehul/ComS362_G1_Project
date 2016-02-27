@@ -1,41 +1,55 @@
 package src;
 
-public class Town {
-	private ArrayList<Sensor> sensors;
-	private ArrayList<Sensor> serviceRequests;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Town implements TownInterface {
 	
-	public boolean addSensor(int sid, int threshold){
-		
+	@Override
+	public boolean addSensor(String street, int section, int threshold) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-	public boolean deleteSensor(int sid){
-		
+	@Override
+	public boolean deleteSensor(String sid) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-	public boolean updateStrain(int sid)
-	{
-		
+	@Override
+	public boolean updateStrain(String street, int section, int newStrain) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-	public boolean resetSensor(int sid)
-	{
-		
+	@Override
+	public boolean resetSensor(String sid) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-	public ArrayList<Sensor> getAllSensors()
-	{
-		
+	@Override
+	public List<Sensor> getAllSensors() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	public Sensor getSensor(int sid)
-	{
-		
+	@Override
+	public Sensor searchForSensor(String street, int section) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	public ArrayList<Sensor> getCriticalSensors()
-	{
-		
+	@Override
+	public List<Sensor> getCriticalSensors() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	public ArrayList<Sensor> getDeadSensors()
-	{
-		
+	@Override
+	public List<Sensor> getDeadSensors() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	public boolean createServiceRequest()
-	{
-		
+	@Override
+	public boolean createServiceRequest(int[] sid_arr) {
+		// TODO Auto-generated method stub
+		return false;
 	}
+	
+	
 }
