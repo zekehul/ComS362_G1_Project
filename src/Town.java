@@ -41,12 +41,12 @@ public class Town implements TownInterface {
 	@Override
 	public List<Sensor> getCriticalSensors() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getCriticalSensors();
 	}
 	@Override
 	public List<Sensor> getDeadSensors() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getDeadSensors();
 	}
 	@Override
 	public boolean createServiceRequest(int[] sid_arr) {
