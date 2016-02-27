@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class StreetSensors {
 
-	//This is the UI file for the project
+	//This is the UI file for the project //
 	public static void main(String[] args) {
 
 		boolean exit = false;
