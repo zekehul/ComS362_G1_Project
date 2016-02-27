@@ -23,19 +23,19 @@ public class TownController implements TownControllerInterface{
 	@Override
 	public boolean resetSensor(String sid) {
 		// TODO Auto-generated method stub
-		return false;
+		return this.getTownInstance().resetSensor(sid);
 	}
 
 	@Override
 	public List<Sensor> getAllSensors() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getTownInstance().getAllSensors();
 	}
 
 	@Override
 	public Sensor searchForSensor(String street, int section) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getTownInstance().searchForSensor(street, section);
 	}
 
 	@Override
