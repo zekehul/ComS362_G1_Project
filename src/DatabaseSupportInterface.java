@@ -6,6 +6,7 @@ public interface DatabaseSupportInterface {
 
 	public boolean createSensor(Sensor s);
 	public Sensor getSensor(String sid);
+	public Sensor getSensor(String street, int section);
 	public int deleteSensor(String sid);
 	public boolean putSensor(Sensor s);
 	public List<Sensor> getAllSensors();

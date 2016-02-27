@@ -1,5 +1,7 @@
 package src;
 
+import java.util.List;
+
 public class Town implements TownInterface {
 	
 	private DatabaseSupport db = null;
@@ -26,17 +28,19 @@ public class Town implements TownInterface {
 	@Override
 	public boolean resetSensor(String sid) {
 		// TODO Auto-generated method stub
-		return false;
+		Sensor s = this.getDB().getSensor(sid);
+		s.reset();
+		return this.getDB().putSensor(s);
 	}
 	@Override
 	public List<Sensor> getAllSensors() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getAllSensors();
 	}
 	@Override
 	public Sensor searchForSensor(String street, int section) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getSensor(street, section);
 	}
 	@Override
 	public List<Sensor> getCriticalSensors() {

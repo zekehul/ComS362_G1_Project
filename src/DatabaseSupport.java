@@ -1,9 +1,11 @@
 package src;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class DatabaseSupport implements DatabaseSupportInterface{
 
+	private Connection connection=null;
 	@Override
 	public boolean createSensor(Sensor s) {
 		// TODO Auto-generated method stub
@@ -50,6 +52,12 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	public boolean addServiceRequest(ServiceRequest sr) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Sensor getSensor(String street, int section) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
