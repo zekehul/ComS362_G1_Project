@@ -11,13 +11,15 @@ public class Sensor implements SensorInterface{
 	@Override
 	public int updateStrain(int strainValue) {
 		// TODO Auto-generated method stub
-		return 0;
+		value = threshold;
+		return value;
 	}
 
 	@Override
 	public int reset() {
 		// TODO Auto-generated method stub
-		return 0;
+		value = 0;
+		return value;
 	}
 
 	public String getSid() {
