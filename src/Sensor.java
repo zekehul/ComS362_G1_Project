@@ -11,7 +11,7 @@ public class Sensor implements SensorInterface{
 	@Override
 	public int updateStrain(int strainValue) {
 		// TODO Auto-generated method stub
-		value = threshold;
+		value = strainValue;
 		return value;
 	}
 
