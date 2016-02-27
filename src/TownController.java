@@ -5,6 +5,7 @@ import java.util.List;
 public class TownController implements TownControllerInterface{
 
 	private Town town = null;
+	
 	@Override
 	public boolean addSensor(String street, int section, int threshold) {
 		return this.getTownInstance().addSensor(street, section, threshold);
@@ -22,19 +23,16 @@ public class TownController implements TownControllerInterface{
 
 	@Override
 	public boolean resetSensor(String sid) {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().resetSensor(sid);
 	}
 
 	@Override
 	public List<Sensor> getAllSensors() {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().getAllSensors();
 	}
 
 	@Override
 	public Sensor searchForSensor(String street, int section) {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().searchForSensor(street, section);
 	}
 
