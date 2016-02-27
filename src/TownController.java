@@ -40,20 +40,17 @@ public class TownController implements TownControllerInterface{
 
 	@Override
 	public List<Sensor> getCriticalSensors() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getTownInstance().getCriticalSensors();
 	}
 
 	@Override
 	public List<Sensor> getDeadSensors() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getTownInstance().getDeadSensors();
 	}
 
 	@Override
 	public boolean createServiceRequest(int[] sid_arr) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.getTownInstance().createServiceRequest(sid_arr);
 	}
 	
 	private Town getTownInstance(){
