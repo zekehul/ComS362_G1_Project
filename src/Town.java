@@ -53,8 +53,15 @@ public class Town implements TownInterface {
 		return this.getDB().getDeadSensors();
 	}
 	@Override
-	public boolean createServiceRequest(int[] sid_arr) {
+	public boolean createServiceRequest(String[] sid_arr) {
 		// TODO Auto-generated method stub
+		// create serviceRequest
+		// for each element in `sid_arr`
+		// grab the `Sensor` with the ID `sid_arr[i]`
+		// add the sensor to the serviceRequest
+		// once all IDs are added, add the serviceRequest to the database
+		ServiceRequest sr = new ServiceRequest();
+		for(String s : sid_arr)
 		return false;
 	}
 	
