@@ -57,7 +57,6 @@ public class Town implements TownInterface {
 	
 	@Override
 	public boolean createServiceRequest(String[] sid_arr) {
-		// TODO Auto-generated method stub
 		// create serviceRequest
 		// for each element in `sid_arr`
 		// grab the `Sensor` with the ID `sid_arr[i]`

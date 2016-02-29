@@ -47,7 +47,7 @@ public class TownController implements TownControllerInterface{
 	}
 
 	@Override
-	public boolean createServiceRequest(int[] sid_arr) {
+	public boolean createServiceRequest(String[] sid_arr) {
 		return this.getTownInstance().createServiceRequest(sid_arr);
 	}
 	

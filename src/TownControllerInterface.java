@@ -12,6 +12,6 @@ public interface TownControllerInterface {
 	public Sensor searchForSensor(String street, int section);
 	public List<Sensor> getCriticalSensors();
 	public List<Sensor> getDeadSensors();
-	public boolean createServiceRequest(int[] sid_arr);
+	public boolean createServiceRequest(String[] sid_arr);
 	
 }

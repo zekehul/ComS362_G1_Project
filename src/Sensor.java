@@ -10,14 +10,12 @@ public class Sensor implements SensorInterface{
 
 	@Override
 	public int updateStrain(int strainValue) {
-		// TODO Auto-generated method stub
 		value = strainValue;
 		return value;
 	}
 
 	@Override
 	public int reset() {
-		// TODO Auto-generated method stub
 		value = 0;
 		return value;
 	}
