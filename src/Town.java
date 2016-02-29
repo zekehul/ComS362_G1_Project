@@ -61,8 +61,10 @@ public class Town implements TownInterface {
 		// add the sensor to the serviceRequest
 		// once all IDs are added, add the serviceRequest to the database
 		ServiceRequest sr = new ServiceRequest();
-		for(String s : sid_arr)
-		return false;
+		for(String s : sid_arr){
+			sr.addSensorToRequest(this.getDB().getSensor(s));
+		}
+		return this.getDB().addServiceRequest(sr);
 	}
 	
 	private DatabaseSupport getDB(){
