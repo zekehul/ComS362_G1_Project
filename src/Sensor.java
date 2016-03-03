@@ -7,6 +7,7 @@ public class Sensor implements SensorInterface{
 	private int section;
 	private int value;
 	private int threshold;
+	private int status;
 
 	@Override
 	public int updateStrain(int strainValue) {
@@ -58,6 +59,14 @@ public class Sensor implements SensorInterface{
 
 	public void setThreshold(int threshold) {
 		this.threshold = threshold;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }
