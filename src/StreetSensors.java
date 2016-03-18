@@ -10,6 +10,7 @@ public class StreetSensors {
 	public static void main(String[] args) {
 
 		boolean exit = false;
+		TownController tc = new TownController();
 		
 		System.out.print("Welcome to the StreetSensor System\nPlease enter a command:");
 		
@@ -19,6 +20,11 @@ public class StreetSensors {
 				String cmd = br.readLine();
 			
 				switch(cmd){
+					case "getSensor":
+						Sensor s = tc.searchForSensor("00000001");
+						System.out.println("Sensor "+s.getSid()+" has value "+s.getValue());
+						break;
+				
 					case "exit": exit = true; 
 						break;
 				}

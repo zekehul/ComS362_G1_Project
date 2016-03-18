@@ -10,6 +10,7 @@ public interface TownInterface {
 	public boolean resetSensor(String sid);
 	public List<Sensor> getAllSensors();
 	public Sensor searchForSensor(String street, int section);
+	public Sensor searchForSensor(String sid);
 	public List<Sensor> getCriticalSensors();
 	public List<Sensor> getDeadSensors();
 	public boolean createServiceRequest(String[] sid_arr);

@@ -54,6 +54,11 @@ public class Town implements TownInterface {
 	public List<Sensor> getDeadSensors() {
 		return this.getDB().getDeadSensors();
 	}
+
+	@Override
+	public Sensor searchForSensor(String sid) {
+		return this.getDB().getSensor(sid);
+	}
 	
 	@Override
 	public boolean createServiceRequest(String[] sid_arr) {
@@ -77,5 +82,6 @@ public class Town implements TownInterface {
 			return db;
 		}
 	}
+
 	
 }
