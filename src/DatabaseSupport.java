@@ -96,7 +96,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			//Database url
-			String url = "jdbc:mysql:mysql.cs.iastate.edu/db362grp01";
+			String url = "jdbc:mysql://mysql.cs.iastate.edu/db362grp01";
 			connection = DriverManager.getConnection (url, "dbu362grp01", "caGDcwAqaHE");
 		}
 		catch(ClassNotFoundException cnfe){
