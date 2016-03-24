@@ -3,6 +3,7 @@ package src;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class StreetSensors {
 
@@ -24,7 +25,15 @@ public class StreetSensors {
 						Sensor s = tc.searchForSensor("00000001");
 						System.out.println("Sensor "+s.getSid()+" has value "+s.getValue());
 						break;
-				
+					case "resetSensor":
+						boolean success = tc.resetSensor("00000001");
+						break;
+					case "getAllSensors":
+						List<Sensor> list = tc.getAllSensors();
+						for(Sensor sen:list){
+							System.out.println(sen.getSid());
+						}
+						break;
 					case "exit": exit = true; 
 						break;
 				}
