@@ -205,7 +205,28 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	@Override
 	public boolean addServiceRequest(ServiceRequest sr) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean returnValue = true;
+		//if(null){
+		// currently assuming that the service request sr is not
+		// in the database
+		//}
+		try{
+			connection = this.getConnection();
+			String qs = "insert into ServiceRequests values ('" + 
+								sr.getSrid() +"', '" +
+								s.getStreetName() +"', " +
+								s.getSection() +", " +
+								s.getValue() +", " +
+								s.getThreshold() +", " +
+								s.getStatus() +")";
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(qs);
+			stmt.close();
+			connection.close();
+		}catch(SQLException sqle){
+			returnValue = false;
+		}
+		return returnValue;
 	}
 
 	@Override
