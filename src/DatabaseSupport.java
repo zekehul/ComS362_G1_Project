@@ -234,7 +234,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 			while(iter.hasNext()){
 				String qs = "insert into Sensors ('SRID','SID') values ('" + 
 				sr.getSrid() +"', '" +							
-				iter.next() +")";
+				iter.next().getSid() +")";
 				Statement stmt = connection.createStatement();
 				stmt.executeUpdate(qs);
 				stmt.close();
