@@ -3,6 +3,7 @@ package src;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,6 +26,20 @@ public class StreetSensors {
 				String cmd = sc.next();
 			
 				switch(cmd){
+				
+					case "createServiceRequest":
+						List<String> SensorIds = new ArrayList<String>();
+						while(sc.hasNext()){
+							SensorIds.add(sc.next());
+						}
+						if(tc.createServiceRequest((String[])SensorIds.toArray())){
+							System.out.println("Service Request Created");
+						}
+						else{
+							System.out.println("Operation Failed");
+						}
+						
+						break;
 				
 					case "updateStrain":
 						String sidToUpdate = sc.next();
