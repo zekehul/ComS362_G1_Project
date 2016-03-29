@@ -27,14 +27,23 @@ public class StreetSensors {
 				switch(cmd){
 				
 					case "updateStrain":
+						String sidToUpdate = sc.next();
+						int newStrain = sc.nextInt();
+						if(tc.updateStrain(sidToUpdate, newStrain)){
+							System.out.println("Sensor "+sidToUpdate+" strain updated to "+newStrain);
+						}
+						else{
+							System.out.println("Update Failed");
+						}
 						break;
 				
 					case "addSensor": 
+						String sidToCreate = sc.next();
 						String street = sc.next();
 						int sect = sc.nextInt();
 						int threshold = sc.nextInt();
 						
-						if(tc.addSensor(street, sect, threshold)){
+						if(tc.addSensor(sidToCreate, street, sect, threshold)){
 							System.out.println("Sensor created at " +street+ ", Sect "+ sect+ ", THRSH="+threshold);
 						}
 						else{
@@ -59,7 +68,8 @@ public class StreetSensors {
 						break;
 					
 					case "getSensor":
-						Sensor s = tc.searchForSensor("00000001");
+						String sidToSearch = sc.next();
+						Sensor s = tc.searchForSensor(sidToSearch);
 						System.out.println("Sensor "+s.getSid()+" has value "+s.getValue());
 						break;
 						

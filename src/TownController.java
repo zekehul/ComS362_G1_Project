@@ -7,8 +7,8 @@ public class TownController implements TownControllerInterface{
 	private Town town = null;
 	
 	@Override
-	public boolean addSensor(String street, int section, int threshold) {
-		return this.getTownInstance().addSensor(street, section, threshold);
+	public boolean addSensor(String sid, String street, int section, int threshold) {
+		return this.getTownInstance().addSensor(sid, street, section, threshold);
 	}
 
 	@Override

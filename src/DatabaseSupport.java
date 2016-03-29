@@ -9,13 +9,34 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	private Connection connection=null;
 	
 	@Override
-	public boolean createSensor(Sensor s) {
+	public boolean putSensor(Sensor s) {
 		if(this.getSensor(s.getStreetName(), s.getSection()) == null){
-			return putSensor(s);
+			return createSensor(s);
 		}
 		else{
-			return false;
+			return updateSensor(s);
 		}
+	}
+
+	private boolean updateSensor(Sensor s) {
+		boolean returnValue = true;
+		
+		try{
+			connection = this.getConnection();
+			String qs = "update Sensors set VAL='" + s.getValue() + "', " +
+											"THRSH='"+ s.getThreshold() +"', " +
+											"SEN_STS='"+ s.getStatus() +"' " +
+											"where SID='" + s.getSid() +"'";
+					
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(qs);
+			stmt.close();
+			connection.close();
+		}
+		catch(SQLException sqle){
+			returnValue = false;
+		}
+		return returnValue;
 	}
 
 	@Override
@@ -80,7 +101,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	}
 
 	@Override
-	public boolean putSensor(Sensor s) {
+	public boolean createSensor(Sensor s) {
 		boolean returnValue = true;
 		
 		try{
