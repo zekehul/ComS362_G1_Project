@@ -3,6 +3,7 @@ package src;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class DatabaseSupport implements DatabaseSupportInterface{
 
@@ -225,8 +226,26 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	@Override
 	public boolean addServiceRequest(ServiceRequest sr) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean returnValue = true;		
+		try{
+			connection = this.getConnection();
+			List<Sensor> sensors = sr.getSensors();
+			ListIterator<Sensor> iter = sensors.listIterator();
+			while(iter.hasNext()){
+				String qs = "insert into Sensors values ('" + 
+				sr.getSrid() +"', '" +							
+				iter.next() +")";
+				Statement stmt = connection.createStatement();
+				stmt.executeUpdate(qs);
+				stmt.close();
+			}
+			
+			connection.close();
+		}
+		catch(SQLException sqle){
+			returnValue = false;
+		}
+		return returnValue;
 	}
 
 	@Override
