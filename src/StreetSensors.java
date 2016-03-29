@@ -30,11 +30,12 @@ public class StreetSensors {
 						break;
 				
 					case "addSensor": 
+						String sidToCreate = sc.next();
 						String street = sc.next();
 						int sect = sc.nextInt();
 						int threshold = sc.nextInt();
 						
-						if(tc.addSensor(street, sect, threshold)){
+						if(tc.addSensor(scToCreate, street, sect, threshold)){
 							System.out.println("Sensor created at " +street+ ", Sect "+ sect+ ", THRSH="+threshold);
 						}
 						else{
@@ -59,7 +60,8 @@ public class StreetSensors {
 						break;
 					
 					case "getSensor":
-						Sensor s = tc.searchForSensor("00000001");
+						String sidToSearch = sc.next();
+						Sensor s = tc.searchForSensor(sidToSearch);
 						System.out.println("Sensor "+s.getSid()+" has value "+s.getValue());
 						break;
 						

@@ -7,8 +7,9 @@ public class Town implements TownInterface {
 	private DatabaseSupport db = null;
 	
 	@Override
-	public boolean addSensor(String street, int section, int threshold) {
+	public boolean addSensor(String sid, String street, int section, int threshold) {
 		Sensor s = new Sensor();
+		s.setSid(sid);
 		s.setStreetName(street);
 		s.setSection(section);
 		s.setThreshold(threshold);

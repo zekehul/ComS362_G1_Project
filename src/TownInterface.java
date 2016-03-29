@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface TownInterface {
 
-	public boolean addSensor(String street, int section, int threshold);
+	public boolean addSensor(String sid, String street, int section, int threshold);
 	public int deleteSensor(String sid);
 	public boolean updateStrain(String sid, int newStrain);
 	public boolean resetSensor(String sid);
