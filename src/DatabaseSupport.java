@@ -10,8 +10,12 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	
 	@Override
 	public boolean createSensor(Sensor s) {
-		// TODO Auto-generated method stub
-		return false;
+		if(this.getSensor(s.getStreetName(), s.getSection()) == null){
+			return putSensor(s);
+		}
+		else{
+			return false;
+		}
 	}
 
 	@Override
@@ -51,14 +55,52 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	@Override
 	public int deleteSensor(String sid) {
-		// TODO Auto-generated method stub
-		return 0;
+		int returnValue = 0;
+		if(this.getSensor(sid) == null){
+			returnValue = 1;
+		}
+		else{
+			try{
+				connection = this.getConnection();
+				if(connection ==null){
+					returnValue = -1;
+				}
+				else{
+					Statement stmt = connection.createStatement();
+					stmt.execute("delete from Sensors where SID='"+sid+"'");
+					stmt.close();
+					connection.close();
+				}
+			}
+			catch(SQLException sqle){
+				returnValue = -1;
+			}
+		}
+		return returnValue;
 	}
 
 	@Override
 	public boolean putSensor(Sensor s) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean returnValue = true;
+		
+		try{
+			connection = this.getConnection();
+			String qs = "insert into Sensors values ('" + 
+								s.getSid() +"', '" +
+								s.getStreetName() +"', " +
+								s.getSection() +", " +
+								s.getValue() +", " +
+								s.getThreshold() +", " +
+								s.getStatus() +")";
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(qs);
+			stmt.close();
+			connection.close();
+		}
+		catch(SQLException sqle){
+			returnValue = false;
+		}
+		return returnValue;
 	}
 
 	@Override
@@ -168,8 +210,36 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	@Override
 	public Sensor getSensor(String street, int section) {
-		// TODO Auto-generated method stub
-		return null;
+		Sensor s = null;
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				s = null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from Sensors where STRT_NME='"+street+"' and SECT='" +section+"'");
+				if(rs.next()){
+					s = new Sensor();
+					s.setSid(rs.getString("SID"));
+					s.setStreetName(rs.getString("STRT_NME"));
+					s.setSection(rs.getInt("SECT"));
+					s.setThreshold(rs.getInt("THRSH"));
+					s.setValue(rs.getInt("VAL"));
+					s.setStatus(rs.getInt("SEN_STS"));
+				}
+				else{
+					s = null;
+				}
+				stmt.close();
+				connection.close();
+			}
+		}
+		catch(SQLException sqle){
+			
+		}
+		
+		return s;
 	}
 	
 	private Connection getConnection() {
