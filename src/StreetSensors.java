@@ -27,10 +27,23 @@ public class StreetSensors {
 						break;
 					case "resetSensor":
 						boolean success = tc.resetSensor("00000001");
+						System.out.println(success);
 						break;
 					case "getAllSensors":
 						List<Sensor> list = tc.getAllSensors();
 						for(Sensor sen:list){
+							System.out.println(sen.getSid());
+						}
+						break;
+					case "getCriticalSensors":
+						List<Sensor> list1 = tc.getCriticalSensors();
+						for(Sensor sen:list1){
+							System.out.println(sen.getSid());
+						}
+						break;
+					case "getDeadSensors":
+						List<Sensor> list2 = tc.getDeadSensors();
+						for(Sensor sen:list2){
 							System.out.println(sen.getSid());
 						}
 						break;
