@@ -51,6 +51,11 @@ public class TownController implements TownControllerInterface{
 		return this.getTownInstance().createServiceRequest(sid_arr);
 	}
 	
+	@Override
+	public Sensor searchForSensor(String sid) {
+		return this.getTownInstance().searchForSensor(sid);
+	}
+	
 	private Town getTownInstance(){
 		if(town == null){
 			return new Town();
