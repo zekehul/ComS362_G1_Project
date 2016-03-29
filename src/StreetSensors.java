@@ -27,6 +27,14 @@ public class StreetSensors {
 				switch(cmd){
 				
 					case "updateStrain":
+						String sidToUpdate = sc.next();
+						int newStrain = sc.nextInt();
+						if(tc.updateStrain(sidToUpdate, newStrain)){
+							System.out.println("Sensor "+sidToUpdate+" strain updated to "+newStrain);
+						}
+						else{
+							System.out.println("Update Failed");
+						}
 						break;
 				
 					case "addSensor": 
