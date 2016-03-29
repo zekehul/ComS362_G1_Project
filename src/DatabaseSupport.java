@@ -63,7 +63,6 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	@Override
 	public List<Sensor> getAllSensors() {
-		// TODO Auto-generated method stub
 		List<Sensor> list = new ArrayList<Sensor>();
 		try{
 			connection = this.getConnection();
@@ -97,14 +96,68 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	@Override
 	public List<Sensor> getCriticalSensors() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Sensor> list = new ArrayList<Sensor>();
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from Sensors where sen_sts=1");
+				while(rs.next()){
+					Sensor s= new Sensor();
+					s.setSid(rs.getString("SID"));
+					s.setStreetName(rs.getString("STRT_NME"));
+					s.setSection(rs.getInt("SECT"));
+					s.setThreshold(rs.getInt("THRSH"));
+					s.setValue(rs.getInt("VAL"));
+					s.setStatus(rs.getInt("SEN_STS"));
+					list.add(s);
+				}
+				
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		
+		return list;
 	}
 
 	@Override
 	public List<Sensor> getDeadSensors() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Sensor> list = new ArrayList<Sensor>();
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from Sensors where sen_sts=2");
+				while(rs.next()){
+					Sensor s= new Sensor();
+					s.setSid(rs.getString("SID"));
+					s.setStreetName(rs.getString("STRT_NME"));
+					s.setSection(rs.getInt("SECT"));
+					s.setThreshold(rs.getInt("THRSH"));
+					s.setValue(rs.getInt("VAL"));
+					s.setStatus(rs.getInt("SEN_STS"));
+					list.add(s);
+				}
+				
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		
+		return list;
 	}
 
 	@Override
