@@ -3,6 +3,7 @@ package src;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class DatabaseSupport implements DatabaseSupportInterface{
 
@@ -225,26 +226,23 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	@Override
 	public boolean addServiceRequest(ServiceRequest sr) {
-		// TODO Auto-generated method stub
-		boolean returnValue = true;
-		//if(null){
-		// currently assuming that the service request sr is not
-		// in the database
-		//}
+		boolean returnValue = true;		
 		try{
 			connection = this.getConnection();
-			String qs = "insert into ServiceRequests values ('" + 
-								sr.getSrid() +"', '" +
-								s.getStreetName() +"', " +
-								s.getSection() +", " +
-								s.getValue() +", " +
-								s.getThreshold() +", " +
-								s.getStatus() +")";
-			Statement stmt = connection.createStatement();
-			stmt.executeUpdate(qs);
-			stmt.close();
+			List<Sensor> sensors = sr.getSensors();
+			ListIterator<Sensor> iter = sensors.listIterator();
+			while(iter.hasNext()){
+				String qs = "insert into Sensors ('SRID','SID') values ('" + 
+				sr.getSrid() +"', '" +							
+				iter.next().getSid() +")";
+				Statement stmt = connection.createStatement();
+				stmt.executeUpdate(qs);
+				stmt.close();
+			}
+			
 			connection.close();
-		}catch(SQLException sqle){
+		}
+		catch(SQLException sqle){
 			returnValue = false;
 		}
 		return returnValue;
