@@ -35,7 +35,7 @@ public class StreetSensors {
 						int sect = sc.nextInt();
 						int threshold = sc.nextInt();
 						
-						if(tc.addSensor(scToCreate, street, sect, threshold)){
+						if(tc.addSensor(sidToCreate, street, sect, threshold)){
 							System.out.println("Sensor created at " +street+ ", Sect "+ sect+ ", THRSH="+threshold);
 						}
 						else{

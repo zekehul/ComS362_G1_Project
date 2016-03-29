@@ -9,9 +9,9 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	private Connection connection=null;
 	
 	@Override
-	public boolean createSensor(Sensor s) {
+	public boolean putSensor(Sensor s) {
 		if(this.getSensor(s.getStreetName(), s.getSection()) == null){
-			return putSensor(s);
+			return createSensor(s);
 		}
 		else{
 			return false;
@@ -80,7 +80,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	}
 
 	@Override
-	public boolean putSensor(Sensor s) {
+	public boolean createSensor(Sensor s) {
 		boolean returnValue = true;
 		
 		try{
