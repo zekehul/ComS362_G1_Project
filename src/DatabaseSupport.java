@@ -232,7 +232,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 			List<Sensor> sensors = sr.getSensors();
 			ListIterator<Sensor> iter = sensors.listIterator();
 			while(iter.hasNext()){
-				String qs = "insert into Sensors ('SRID','SID') values ('" + 
+				String qs = "insert into Service Request ('SRID','SID') values ('" + 
 				sr.getSrid() +"', '" +							
 				iter.next().getSid() +")";
 				Statement stmt = connection.createStatement();

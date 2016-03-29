@@ -13,6 +13,6 @@ public interface TownControllerInterface {
 	public Sensor searchForSensor(String sid);
 	public List<Sensor> getCriticalSensors();
 	public List<Sensor> getDeadSensors();
-	public boolean createServiceRequest(String[] sid_arr);
+	public boolean createServiceRequest(String srid, String[] sid_arr);
 	
 }

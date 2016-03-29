@@ -29,10 +29,11 @@ public class StreetSensors {
 				
 					case "createServiceRequest":
 						List<String> SensorIds = new ArrayList<String>();
+						String newSRId = sc.next(); 
 						while(sc.hasNext()){
 							SensorIds.add(sc.next());
 						}
-						if(tc.createServiceRequest((String[])SensorIds.toArray())){
+						if(tc.createServiceRequest(newSRId, SensorIds.toArray(new String[SensorIds.size()]))){
 							System.out.println("Service Request Created");
 						}
 						else{

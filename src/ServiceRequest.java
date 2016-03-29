@@ -1,5 +1,6 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceRequest implements ServiceRequestInterface{
@@ -25,6 +26,12 @@ public class ServiceRequest implements ServiceRequestInterface{
 
 	@Override
 	public boolean addSensorToRequest(Sensor s) {
-		return sensors.add(s);
+		if(this.sensors == null){
+			this.sensors = new ArrayList<Sensor>();
+			return sensors.add(s);
+		}
+		else{
+			return sensors.add(s);
+		}
 	}
 }
