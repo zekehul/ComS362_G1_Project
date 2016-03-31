@@ -9,6 +9,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	private Connection connection=null;
 	
+	//If the sensor already exists, update it, otherwise insert a new sensor
 	@Override
 	public boolean putSensor(Sensor s) {
 		if(this.getSensor(s.getStreetName(), s.getSection()) == null){
@@ -19,6 +20,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		}
 	}
 
+	//Updates a Sensor
 	private boolean updateSensor(Sensor s) {
 		boolean returnValue = true;
 		
@@ -40,6 +42,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return returnValue;
 	}
 
+	//Returns Sensor object with the given Sensor ID
 	@Override
 	public Sensor getSensor(String sid) {
 		// TODO Auto-generated method stub
@@ -75,6 +78,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return s;
 	}
 
+	//Deletes the Sensor with the given ID
 	@Override
 	public int deleteSensor(String sid) {
 		int returnValue = 0;
@@ -101,6 +105,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return returnValue;
 	}
 
+	//Inserts the given Sensor Object into the table
 	@Override
 	public boolean createSensor(Sensor s) {
 		boolean returnValue = true;
@@ -125,6 +130,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return returnValue;
 	}
 
+	//Returns a list of all the Sensors
 	@Override
 	public List<Sensor> getAllSensors() {
 		List<Sensor> list = new ArrayList<Sensor>();
@@ -158,6 +164,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return list;
 	}
 
+	//Returns a list of all Sensors with a critical status
 	@Override
 	public List<Sensor> getCriticalSensors() {
 		List<Sensor> list = new ArrayList<Sensor>();
@@ -191,6 +198,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return list;
 	}
 
+	//Returns a list of all Sensors with a dead status
 	@Override
 	public List<Sensor> getDeadSensors() {
 		List<Sensor> list = new ArrayList<Sensor>();
@@ -224,6 +232,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return list;
 	}
 
+	//Inserts the given ServiceRequest into the table
 	@Override
 	public boolean addServiceRequest(ServiceRequest sr) {
 		boolean returnValue = true;		
@@ -248,6 +257,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return returnValue;
 	}
 
+	//Returns a Sensor with the given location
 	@Override
 	public Sensor getSensor(String street, int section) {
 		Sensor s = null;
@@ -282,6 +292,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return s;
 	}
 	
+	//Gets the Connection Object
 	private Connection getConnection() {
 		// TODO Auto-generated method stub
 		try{

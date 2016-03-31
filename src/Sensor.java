@@ -15,6 +15,7 @@ public class Sensor implements SensorInterface{
 		return value;
 	}
 
+	//Resets the value of this Sensor to 0
 	@Override
 	public int reset() {
 		value = 0;

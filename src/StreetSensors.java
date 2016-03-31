@@ -20,6 +20,7 @@ public class StreetSensors {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while(!exit){
 			try {
+				//System reads the command given, arguments are read in each case
 				String line = br.readLine();
 				Scanner sc = new Scanner(line);
 				sc.useDelimiter(",\\s*");
@@ -27,6 +28,7 @@ public class StreetSensors {
 			
 				switch(cmd){
 				
+					//Command: createServiceRequest, ID #, Sensor ID 1, Sensor ID 2, ...etc
 					case "createServiceRequest":
 						List<String> SensorIds = new ArrayList<String>();
 						String newSRId = sc.next(); 
@@ -42,6 +44,7 @@ public class StreetSensors {
 						
 						break;
 				
+					//Command: updateStrain, Sensor ID, new strain value
 					case "updateStrain":
 						String sidToUpdate = sc.next();
 						int newStrain = sc.nextInt();
@@ -53,6 +56,7 @@ public class StreetSensors {
 						}
 						break;
 				
+					//Command: addSensor, Sensor ID, Street Name, Section number, threshold
 					case "addSensor": 
 						String sidToCreate = sc.next();
 						String street = sc.next();
@@ -67,6 +71,7 @@ public class StreetSensors {
 						}
 						break;
 					
+					//Command: deleteSensor, Sensor ID
 					case "deleteSensor":
 						String sidToDelete = sc.next();
 						int result = tc.deleteSensor(sidToDelete);
@@ -83,38 +88,44 @@ public class StreetSensors {
 						}
 						break;
 					
+					//Command: getSensor, Sensor ID
 					case "getSensor":
 						String sidToSearch = sc.next();
 						Sensor s = tc.searchForSensor(sidToSearch);
 						System.out.println("Sensor "+s.getSid()+" has value "+s.getValue());
 						break;
-						
+					
+					//Command: resetSensor, Sensor ID
 					case "resetSensor":
 						boolean success = tc.resetSensor("00000001");
 						System.out.println(success);
 						break;
-						
+					
+					//Command: getAllSensors
 					case "getAllSensors":
 						List<Sensor> list = tc.getAllSensors();
 						for(Sensor sen:list){
 							System.out.println(sen.getSid());
 						}
 						break;
-						
+					
+					//Command: getCriticalSensors
 					case "getCriticalSensors":
 						List<Sensor> list1 = tc.getCriticalSensors();
 						for(Sensor sen:list1){
 							System.out.println(sen.getSid());
 						}
 						break;
-						
+					
+					//Command: getDeadSensors
 					case "getDeadSensors":
 						List<Sensor> list2 = tc.getDeadSensors();
 						for(Sensor sen:list2){
 							System.out.println(sen.getSid());
 						}
 						break;
-						
+					
+					//Exits the Application
 					case "exit": exit = true; 
 						break;
 						
