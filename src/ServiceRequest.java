@@ -7,8 +7,13 @@ public class ServiceRequest implements ServiceRequestInterface{
 
 	// service request id number
 	private String srid;
+	
 	// list of sensors in the service request
 	private List<Sensor> sensors;
+	
+	//0 for Outstanding
+	//1 for Closed
+	private int status;
 	
 	// gets the service request's id number
 	public String getSrid() {
@@ -42,5 +47,13 @@ public class ServiceRequest implements ServiceRequestInterface{
 		else{
 			return sensors.add(s);
 		}
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }

@@ -3,11 +3,12 @@ package src;
 public class Sensor implements SensorInterface{
 	
 	private String sid;
-	private String streetName;
+	private String stid;
 	private int section;
 	private int value;
 	private int threshold;
 	private int status;
+	private String srid;
 
 	@Override
 	public int updateStrain(int strainValue) {
@@ -28,14 +29,6 @@ public class Sensor implements SensorInterface{
 
 	public void setSid(String sid) {
 		this.sid = sid;
-	}
-
-	public String getStreetName() {
-		return streetName;
-	}
-
-	public void setStreetName(String streetName) {
-		this.streetName = streetName;
 	}
 
 	public int getSection() {
@@ -68,6 +61,22 @@ public class Sensor implements SensorInterface{
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String getStid() {
+		return stid;
+	}
+
+	public void setStid(String stid) {
+		this.stid = stid;
+	}
+
+	public String getSrid() {
+		return srid;
+	}
+
+	public void setSrid(String srid) {
+		this.srid = srid;
 	}
 
 }
