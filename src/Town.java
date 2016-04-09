@@ -10,7 +10,7 @@ public class Town implements TownInterface {
 	public boolean addSensor(String sid, String street, int section, int threshold) {
 		Sensor s = new Sensor();
 		s.setSid(sid);
-		s.setStreetName(street);
+		s.setStid(street);
 		s.setSection(section);
 		s.setThreshold(threshold);
 		s.setValue(0);

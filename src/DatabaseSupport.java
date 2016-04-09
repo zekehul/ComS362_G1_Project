@@ -12,7 +12,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	//If the sensor already exists, update it, otherwise insert a new sensor
 	@Override
 	public boolean putSensor(Sensor s) {
-		if(this.getSensor(s.getStreetName(), s.getSection()) == null){
+		if(this.getSensor(s.getStid(), s.getSection()) == null){
 			return createSensor(s);
 		}
 		else{
@@ -58,11 +58,12 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 				if(rs.next()){
 					s = new Sensor();
 					s.setSid(sid);
-					s.setStreetName(rs.getString("STRT_NME"));
+					s.setStid(rs.getString("STID"));
 					s.setSection(rs.getInt("SECT"));
 					s.setThreshold(rs.getInt("THRSH"));
 					s.setValue(rs.getInt("VAL"));
 					s.setStatus(rs.getInt("SEN_STS"));
+					s.setSrid(rs.getString("SRID"));
 				}
 				else{
 					s = null;
@@ -114,11 +115,12 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 			connection = this.getConnection();
 			String qs = "insert into Sensors values ('" + 
 								s.getSid() +"', '" +
-								s.getStreetName() +"', " +
+								s.getStid() +"', " +
 								s.getSection() +", " +
 								s.getValue() +", " +
 								s.getThreshold() +", " +
-								s.getStatus() +")";
+								s.getStatus() +", " +
+								s.getSrid() +")";
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate(qs);
 			stmt.close();
@@ -145,11 +147,12 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 				while(rs.next()){
 					Sensor s= new Sensor();
 					s.setSid(rs.getString("SID"));
-					s.setStreetName(rs.getString("STRT_NME"));
+					s.setStid(rs.getString("STID"));
 					s.setSection(rs.getInt("SECT"));
 					s.setThreshold(rs.getInt("THRSH"));
 					s.setValue(rs.getInt("VAL"));
 					s.setStatus(rs.getInt("SEN_STS"));
+					s.setSrid(rs.getString("SRID"));
 					list.add(s);
 				}
 				
@@ -179,11 +182,12 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 				while(rs.next()){
 					Sensor s= new Sensor();
 					s.setSid(rs.getString("SID"));
-					s.setStreetName(rs.getString("STRT_NME"));
+					s.setStid(rs.getString("STID"));
 					s.setSection(rs.getInt("SECT"));
 					s.setThreshold(rs.getInt("THRSH"));
 					s.setValue(rs.getInt("VAL"));
 					s.setStatus(rs.getInt("SEN_STS"));
+					s.setSrid(rs.getString("SRID"));
 					list.add(s);
 				}
 				
@@ -213,11 +217,12 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 				while(rs.next()){
 					Sensor s= new Sensor();
 					s.setSid(rs.getString("SID"));
-					s.setStreetName(rs.getString("STRT_NME"));
+					s.setStid(rs.getString("STID"));
 					s.setSection(rs.getInt("SECT"));
 					s.setThreshold(rs.getInt("THRSH"));
 					s.setValue(rs.getInt("VAL"));
 					s.setStatus(rs.getInt("SEN_STS"));
+					s.setSrid(rs.getString("SRID"));
 					list.add(s);
 				}
 				
@@ -259,7 +264,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	//Returns a Sensor with the given location
 	@Override
-	public Sensor getSensor(String street, int section) {
+	public Sensor getSensor(String stid, int section) {
 		Sensor s = null;
 		try{
 			connection = this.getConnection();
@@ -268,15 +273,16 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 			}
 			else{
 				Statement stmt = connection.createStatement();
-				ResultSet rs=stmt.executeQuery("select * from Sensors where STRT_NME='"+street+"' and SECT='" +section+"'");
+				ResultSet rs=stmt.executeQuery("select * from Sensors where STID='"+stid+"' and SECT='" +section+"'");
 				if(rs.next()){
 					s = new Sensor();
 					s.setSid(rs.getString("SID"));
-					s.setStreetName(rs.getString("STRT_NME"));
+					s.setStid(rs.getString("STID"));
 					s.setSection(rs.getInt("SECT"));
 					s.setThreshold(rs.getInt("THRSH"));
 					s.setValue(rs.getInt("VAL"));
 					s.setStatus(rs.getInt("SEN_STS"));
+					s.setSrid(rs.getString("SRID"));
 				}
 				else{
 					s = null;
