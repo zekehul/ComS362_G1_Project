@@ -28,6 +28,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 			connection = this.getConnection();
 			String qs = "update Sensors set VAL='" + s.getValue() + "', " +
 											"THRSH='"+ s.getThreshold() +"', " +
+											"SRID='"+ s.getSrid() +"', " +
 											"SEN_STS='"+ s.getStatus() +"' " +
 											"where SID='" + s.getSid() +"'";
 					
@@ -240,19 +241,16 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	//Inserts the given ServiceRequest into the table
 	@Override
 	public boolean addServiceRequest(ServiceRequest sr) {
+		//TODO
 		boolean returnValue = true;		
 		try{
 			connection = this.getConnection();
-			List<Sensor> sensors = sr.getSensors();
-			ListIterator<Sensor> iter = sensors.listIterator();
-			while(iter.hasNext()){
-				String qs = "insert into ServiceRequest (SRID, SID) values ('" + 
-				sr.getSrid() +"', '" +							
-				iter.next().getSid() +"')";
-				Statement stmt = connection.createStatement();
-				stmt.executeUpdate(qs);
-				stmt.close();
-			}
+			String qs = "insert into ServiceRequest (SRID, SR_STS) values ('" + 
+			sr.getSrid() +"', '" +							
+			sr.getStatus() +"')";
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(qs);
+			stmt.close();
 			
 			connection.close();
 		}

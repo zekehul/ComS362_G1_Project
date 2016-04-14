@@ -63,15 +63,19 @@ public class Town implements TownInterface {
 	
 	@Override
 	public boolean createServiceRequest(String srid, String[] sid_arr) {
+		//TODO
 		// create serviceRequest
 		// for each element in `sid_arr`
 		// grab the `Sensor` with the ID `sid_arr[i]`
-		// add the sensor to the serviceRequest
-		// once all IDs are added, add the serviceRequest to the database
+		// add the service request ID to the sensor, put Sensor back in DB
+		// once all Sensors are updated, add the serviceRequest to the database
 		ServiceRequest sr = new ServiceRequest();
 		sr.setSrid(srid);
+		sr.setStatus(0);
 		for(String s : sid_arr){
-			sr.addSensorToRequest(this.getDB().getSensor(s));
+			Sensor sen = this.getDB().getSensor(s);
+			sen.setSrid(srid);
+			this.getDB().putSensor(sen);
 		}
 		return this.getDB().addServiceRequest(sr);
 	}

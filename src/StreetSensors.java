@@ -97,15 +97,21 @@ public class StreetSensors {
 					
 					//Command: resetSensor, Sensor ID
 					case "resetSensor":
-						boolean success = tc.resetSensor("00000001");
-						System.out.println(success);
+						String sidToReset = sc.next();
+						if(tc.resetSensor(sidToReset)){
+							System.out.println("Sensor "+sidToReset+" was reset");
+						}
+						else{
+							System.out.println("Operation Failed");
+						}
 						break;
 					
 					//Command: getAllSensors
 					case "getAllSensors":
 						List<Sensor> list = tc.getAllSensors();
+						System.out.println("ID________VALUE__");
 						for(Sensor sen:list){
-							System.out.println(sen.getSid());
+							System.out.println(sen.getSid()+ "  " + sen.getValue());
 						}
 						break;
 					
