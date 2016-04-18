@@ -315,6 +315,36 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		}
 		return connection;
 	}
+
+	@Override
+	public ServiceRequest getServiceRequest(String srid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int putServiceRequest(ServiceRequest sr) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<ServiceRequest> getAllServiceRequests() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Street> getAllStreets() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean putStreet(Street st) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 }

@@ -79,4 +79,58 @@ public class TownController implements TownControllerInterface{
 		}
 	}
 
+	@Override
+	public boolean searchServiceRequest(String srid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<ServiceRequest> getAllServiceRequests() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updateServiceRequest(String srid, int stat) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<ServiceRequest> getAllStreets() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ServiceRequest> getAllOutstandingServiceRequests() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ServiceRequest> getAllClosedServiceRequests() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addStreet(String stid, String name) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateStreet(String name, String newName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int deleteStreet(String name) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

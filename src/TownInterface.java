@@ -14,4 +14,13 @@ public interface TownInterface {
 	public List<Sensor> getCriticalSensors();
 	public List<Sensor> getDeadSensors();
 	public boolean createServiceRequest(String srid, String[] sid_arr);
+	public boolean searchServiceRequest(String srid);
+	public List<ServiceRequest> getAllServiceRequests();
+	public boolean updateServiceRequest(String srid, int stat);
+	public List<ServiceRequest> getAllStreets();
+	public List<ServiceRequest> getAllOutstandingServiceRequests();
+	public List<ServiceRequest>getAllClosedServiceRequests();
+	public boolean addStreet(String stid, String name);
+	public boolean updateStreet(String name, String newName);
+	public int deleteStreet(String name);
 }
