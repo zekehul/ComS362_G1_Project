@@ -80,7 +80,7 @@ public class TownController implements TownControllerInterface{
 	}
 
 	@Override
-	public boolean searchServiceRequest(String srid) {
+	public ServiceRequest searchServiceRequest(String srid) {
 		return this.getTownInstance().searchServiceRequest(srid);
 	}
 
@@ -97,7 +97,7 @@ public class TownController implements TownControllerInterface{
 	}
 
 	@Override
-	public List<ServiceRequest> getAllStreets() {
+	public List<Street> getAllStreets() {
 		// TODO Auto-generated method stub
 		return this.getTownInstance().getAllStreets();
 	}

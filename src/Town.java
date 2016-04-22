@@ -90,9 +90,9 @@ public class Town implements TownInterface {
 	}
 
 	@Override
-	public boolean searchServiceRequest(String srid) {
+	public ServiceRequest searchServiceRequest(String srid) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class Town implements TownInterface {
 	}
 
 	@Override
-	public List<ServiceRequest> getAllStreets() {
+	public List<Street> getAllStreets() {
 		// TODO Auto-generated method stub
 		return null;
 	}

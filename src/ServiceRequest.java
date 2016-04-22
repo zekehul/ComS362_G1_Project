@@ -12,6 +12,8 @@ public class ServiceRequest implements ServiceRequestInterface{
 	//1 for Closed
 	private int status;
 	
+	private List<String> sensorsIds;
+	
 	// gets the service request's id number
 	public String getSrid() {
 		return srid;
@@ -28,5 +30,13 @@ public class ServiceRequest implements ServiceRequestInterface{
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public List<String> getSensorsIds() {
+		return sensorsIds;
+	}
+
+	public void setSensorsIds(List<String> sensorsIds) {
+		this.sensorsIds = sensorsIds;
 	}
 }

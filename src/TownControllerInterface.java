@@ -14,10 +14,10 @@ public interface TownControllerInterface {
 	public List<Sensor> getCriticalSensors();
 	public List<Sensor> getDeadSensors();
 	public boolean createServiceRequest(String srid, String[] sid_arr);
-	public boolean searchServiceRequest(String srid);
+	public ServiceRequest searchServiceRequest(String srid);
 	public List<ServiceRequest> getAllServiceRequests();
 	public boolean updateServiceRequest(String srid, int stat);
-	public List<ServiceRequest> getAllStreets();
+	public List<Street> getAllStreets();
 	public List<ServiceRequest> getAllOutstandingServiceRequests();
 	public List<ServiceRequest>getAllClosedServiceRequests();
 	public boolean addStreet(String stid, String name);

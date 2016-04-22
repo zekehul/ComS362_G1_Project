@@ -28,6 +28,133 @@ public class StreetSensors {
 			
 				switch(cmd){
 				
+					//Command: getAllStreets
+					case "getAllStreets":
+						List<Street> streets = tc.getAllStreets();
+						System.out.println("Street ID    Street Name");
+						for(Street s:streets){
+							System.out.println(s.getStid()+"     "+s.getName());
+						}
+						break;
+				
+					//Command: updateStreet, street name, new name
+					case "updateStreet":
+						String stToUpdate = sc.next();
+						String newName = sc.next();
+						if(tc.updateStreet(stToUpdate, newName)){
+							System.out.println(stToUpdate+" was changed to "+newName);
+						}
+						else{
+							System.out.println("Operation Failed");
+						}
+						break;
+					
+				
+					//Command: deleteStreet, street name
+					case "deleteStreet":
+						String stToDelete = sc.next();
+						int result = tc.deleteStreet(stToDelete);
+						switch(result){
+							case -1:
+								System.out.println("Database Error");
+								break;
+							case 0:
+								System.out.println(stToDelete+" deleted");
+								break;
+							case 1:
+								System.out.println("No such sensor exists");
+								break;
+						}
+				
+					//Command addStreet, street ID #, street name
+					case "addStreet":
+						String stidToAdd = sc.next();
+						String stName = sc.next();
+						if(tc.addStreet(stidToAdd, stName)){
+							System.out.println(stName+" created with ID "+stidToAdd);
+						}
+						else{
+							System.out.println("Operation Failed");
+						}
+						break;
+				
+					//Command: getAllClosedServiceRequests
+					case "getAllClosedServiceRequests":
+						List<ServiceRequest> csrList = tc.getAllClosedServiceRequests();
+						System.out.println("The following Service Requests are Closed:");
+						String closedOutput = "";
+						for(ServiceRequest sr:csrList){
+							closedOutput = closedOutput+sr.getSrid()+"  ";
+						}
+						System.out.println(closedOutput);
+						break;
+				
+					//Command: getAllOutstandingServiceRequests
+					case "getAllOutstandingServiceRequests":
+						List<ServiceRequest> osrList = tc.getAllOutstandingServiceRequests();
+						System.out.println("The following Service Requests are Outstanding:");
+						String outstandingOutput = "";
+						for(ServiceRequest sr:osrList){
+							outstandingOutput = outstandingOutput+sr.getSrid()+"  ";
+						}
+						System.out.println(outstandingOutput);
+						break;
+				
+					//Command: getAllServiceRequests
+					case "getAllServiceRequests":
+						List<ServiceRequest> srList = tc.getAllServiceRequests();
+						for(ServiceRequest sr:srList){
+							if(sr.getStatus()==0){
+								System.out.println("Service Request "+sr.getSrid()+" - Status - Outstanding");
+							}
+							else{
+								System.out.println("Service Request "+sr.getSrid()+" - Status - Closed");
+							}
+						}
+						break;
+				
+					//Command: searchServiceRequest, SR ID #
+					case "searchServiceRequest":
+						String sridToFind = sc.next();
+						ServiceRequest sr = tc.searchServiceRequest(sridToFind);
+						if(sr.getStatus()==0){
+							System.out.println("Service Request "+sridToFind+" - Status - Outstanding");
+						}
+						else{
+							System.out.println("Service Request "+sridToFind+" - Status - Closed");
+						}
+						for(String s:sr.getSensorsIds()){
+							System.out.println(s);
+						}
+						break;
+				
+					//Command: updateServiceRequest, SR ID #, "Open"/"Closed"
+					case "updateServiceRequest":
+						String sridToUpdate = sc.next();
+						String status = sc.next();
+						if(status.equals("Outstanding")){
+							if(tc.updateServiceRequest(sridToUpdate, 0)){
+								System.out.println("Service Request "+sridToUpdate+" updated");
+							}
+							else{
+								System.out.println("Operation Failed");
+							}
+						}
+						else if(status.equals("Closed")){
+							if(tc.updateServiceRequest(sridToUpdate, 1)){
+								System.out.println("Service Request "+sridToUpdate+" updated");
+							}
+							else{
+								System.out.println("Operation Failed");
+							}
+						}
+						else{
+							System.out.println("Please enter 'Outstanding' or 'Closed' when updating a Service Request");
+							break;
+						}
+							
+						break;
+				
 					//Command: createServiceRequest, ID #, Sensor ID 1, Sensor ID 2, ...etc
 					case "createServiceRequest":
 						List<String> SensorIds = new ArrayList<String>();
@@ -74,7 +201,7 @@ public class StreetSensors {
 					//Command: deleteSensor, Sensor ID
 					case "deleteSensor":
 						String sidToDelete = sc.next();
-						int result = tc.deleteSensor(sidToDelete);
+						result = tc.deleteSensor(sidToDelete);
 						switch(result){
 							case -1:
 								System.out.println("Database Error");
