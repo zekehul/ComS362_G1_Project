@@ -123,8 +123,8 @@ public class StreetSensors {
 						else{
 							System.out.println("Service Request "+sridToFind+" - Status - Closed");
 						}
-						for(String s:sr.getSensorsIds()){
-							System.out.println(s);
+						for(Sensor s:sr.getSensors()){
+							System.out.println(s.getSid());
 						}
 						break;
 				

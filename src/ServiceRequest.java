@@ -12,7 +12,7 @@ public class ServiceRequest implements ServiceRequestInterface{
 	//1 for Closed
 	private int status;
 	
-	private List<String> sensorsIds;
+	private List<Sensor> sensors;
 	
 	// gets the service request's id number
 	public String getSrid() {
@@ -32,11 +32,11 @@ public class ServiceRequest implements ServiceRequestInterface{
 		this.status = status;
 	}
 
-	public List<String> getSensorsIds() {
-		return sensorsIds;
+	public List<Sensor> getSensors() {
+		return sensors;
 	}
 
-	public void setSensorsIds(List<String> sensorsIds) {
-		this.sensorsIds = sensorsIds;
+	public void setSensors(List<Sensor> sensors) {
+		this.sensors = sensors;
 	}
 }

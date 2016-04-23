@@ -92,13 +92,13 @@ public class Town implements TownInterface {
 	@Override
 	public ServiceRequest searchServiceRequest(String srid) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getServiceRequest(srid);
 	}
 
 	@Override
 	public List<ServiceRequest> getAllServiceRequests() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getAllServiceRequests();
 	}
 
 	@Override
@@ -116,13 +116,13 @@ public class Town implements TownInterface {
 	@Override
 	public List<ServiceRequest> getAllOutstandingServiceRequests() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getAllOutstandingServiceRequests();
 	}
 
 	@Override
 	public List<ServiceRequest> getAllClosedServiceRequests() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getAllClosedServiceRequests();
 	}
 
 	@Override

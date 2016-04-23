@@ -16,6 +16,8 @@ public interface DatabaseSupportInterface {
 	public ServiceRequest getServiceRequest(String srid);
 	public int putServiceRequest(ServiceRequest sr);
 	public List<ServiceRequest> getAllServiceRequests();
+	public List<ServiceRequest> getAllOutstandingServiceRequests();
+	public List<ServiceRequest> getAllClosedServiceRequests();
 	public List<Street> getAllStreets();
 	public boolean putStreet(Street st);
 	

@@ -318,8 +318,33 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	@Override
 	public ServiceRequest getServiceRequest(String srid) {
-		// TODO Auto-generated method stub
-		return null;
+		ServiceRequest sr = null;
+		try{
+			connection = this.getConnection();		
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from ServiceRequest where sr_sts=0");
+				
+				if(rs.next()){	
+					sr= new ServiceRequest();
+					sr.setSrid(rs.getString("SRID"));
+					sr.setStatus(rs.getInt("SR_STS"));
+					sr.setSensors(getAllSensorWithGivenSrid(srid));
+				}
+				else{
+					sr = null;
+				}
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		return sr;
 	}
 
 	@Override
@@ -330,8 +355,33 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	@Override
 	public List<ServiceRequest> getAllServiceRequests() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ServiceRequest> list = new ArrayList<ServiceRequest>();
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from ServiceRequest");
+				while(rs.next()){
+					ServiceRequest sr= new ServiceRequest();
+					String srid= rs.getString("SRID");
+					sr.setSrid(srid);
+					sr.setStatus(rs.getInt("SR_STS"));
+					sr.setSensors(getAllSensorWithGivenSrid(srid));
+					list.add(sr);
+				}
+				
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		
+		return list;
 	}
 
 	@Override
@@ -344,6 +394,100 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	public boolean putStreet(Street st) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	//0 is outstanding
+	@Override
+	public List<ServiceRequest> getAllOutstandingServiceRequests() {
+		List<ServiceRequest> list = new ArrayList<ServiceRequest>();
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from ServiceRequest where sr_sts=0");
+				while(rs.next()){
+					ServiceRequest sr= new ServiceRequest();
+					String srid= rs.getString("SRID");
+					sr.setSrid(srid);
+					sr.setStatus(rs.getInt("SR_STS"));
+					sr.setSensors(getAllSensorWithGivenSrid(srid));
+					list.add(sr);
+				}
+				
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		
+		return list;
+	}
+	//1 is closed 
+	@Override
+	public List<ServiceRequest> getAllClosedServiceRequests() {
+		List<ServiceRequest> list = new ArrayList<ServiceRequest>();
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from ServiceRequest where sr_sts=1");
+				while(rs.next()){
+					ServiceRequest sr= new ServiceRequest();
+					String srid= rs.getString("SRID");
+					sr.setSrid(srid);
+					sr.setStatus(rs.getInt("SR_STS"));
+					sr.setSensors(getAllSensorWithGivenSrid(srid));
+					list.add(sr);
+				}
+				
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		return list;
+	}
+	public List<Sensor> getAllSensorWithGivenSrid(String srid) {
+		List<Sensor> list = new ArrayList<Sensor>();
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from Sensors where srid="+srid);
+				while(rs.next()){
+					Sensor s= new Sensor();
+					s.setSid(rs.getString("SID"));
+					s.setStid(rs.getString("STID"));
+					s.setSection(rs.getInt("SECT"));
+					s.setThreshold(rs.getInt("THRSH"));
+					s.setValue(rs.getInt("VAL"));
+					s.setStatus(rs.getInt("SEN_STS"));
+					s.setSrid(rs.getString("SRID"));
+					list.add(s);
+				}
+
+				stmt.close();
+				connection.close();
+			}
+		}
+		catch(SQLException sqle){
+
+		}
+
+		return list;
+
 	}
 	
 
