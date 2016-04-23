@@ -25,6 +25,9 @@ public class Town implements TownInterface {
 	@Override
 	public boolean updateStrain(String sid, int newStrain) {
 		Sensor s = this.getDB().getSensor(sid);
+		if(s==null){
+			return false;
+		}
 		s.updateStrain(newStrain);
 		return this.getDB().putSensor(s);
 	}
@@ -32,6 +35,9 @@ public class Town implements TownInterface {
 	@Override
 	public boolean resetSensor(String sid) {
 		Sensor s = this.getDB().getSensor(sid);
+		if(s==null){
+			return false;
+		}
 		s.reset();
 		return this.getDB().putSensor(s);
 	}
@@ -102,6 +108,9 @@ public class Town implements TownInterface {
 	@Override
 	public boolean updateServiceRequest(String srid, int stat) {
 		ServiceRequest sr = this.getDB().getServiceRequest(srid);
+		if(sr==null){
+			return false;
+		}
 		sr.setStatus(stat);
 		return this.getDB().putServiceRequest(sr);
 	}
@@ -132,6 +141,9 @@ public class Town implements TownInterface {
 	@Override
 	public boolean updateStreet(String stid, String newName) {
 		Street st = this.getDB().getStreet(stid);
+		if(st==null){
+			return false;
+		}
 		st.setName(newName);
 		return this.getDB().putStreet(st);
 	}
