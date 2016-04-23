@@ -316,6 +316,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return connection;
 	}
 
+	//Returns a ServiceRequest with the given SRID
 	@Override
 	public ServiceRequest getServiceRequest(String srid) {
 		ServiceRequest sr = null;
@@ -347,6 +348,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return sr;
 	}
 
+	//Stores the given ServiceRequest, either creating a new one, or updating an existing one
 	@Override
 	public boolean putServiceRequest(ServiceRequest sr) {
 		if(this.getServiceRequest(sr.getSrid()) == null){
@@ -374,6 +376,8 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		}
 		return returnValue;
 	}
+	
+	//Updates the given ServiceRequest
 	private boolean updateServiceRequest(ServiceRequest sr) {
 		boolean returnValue = true;
 		
@@ -392,6 +396,8 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		}
 		return returnValue;
 	}
+	
+	//Returns a list of all ServiceRequests
 	@Override
 	public List<ServiceRequest> getAllServiceRequests() {
 		List<ServiceRequest> list = new ArrayList<ServiceRequest>();
@@ -423,6 +429,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return list;
 	}
 
+	//Returns a list of all Streets
 	@Override
 	public List<Street> getAllStreets() {
 		List<Street> list = new ArrayList<Street>();
@@ -454,8 +461,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return list;
 	}
 
-	
-
+	//Stores the given Street
 	@Override
 	public boolean putStreet(Street st) {
 		if(this.getStreet(st.getStid()) == null){
@@ -465,6 +471,8 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 			return updateStreet(st);
 		}
 	}
+	
+	//Updates the given Street
 	private boolean updateStreet(Street st) {
 		boolean returnValue = true;
 
@@ -484,6 +492,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return returnValue;
 	}
 
+	//Creates a new Street 
 	public boolean createStreet(Street st) {
 		boolean returnValue = true;
 
@@ -503,7 +512,8 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return returnValue;
 	}
 
-	//0 is outstanding
+	//Returns a list of all outstanding Service Requests 
+	//Status 0 is outstanding
 	@Override
 	public List<ServiceRequest> getAllOutstandingServiceRequests() {
 		List<ServiceRequest> list = new ArrayList<ServiceRequest>();
@@ -534,7 +544,9 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		
 		return list;
 	}
-	//1 is closed 
+	
+	//Returns a list of all closed Service Requests 
+	//Status 1 is closed
 	@Override
 	public List<ServiceRequest> getAllClosedServiceRequests() {
 		List<ServiceRequest> list = new ArrayList<ServiceRequest>();
@@ -564,6 +576,8 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		}
 		return list;
 	}
+	
+	//Returns a list of Sensors in a ServiceRequest
 	public List<Sensor> getAllSensorWithGivenSrid(String srid) {
 		List<Sensor> list = new ArrayList<Sensor>();
 		try{
@@ -597,6 +611,8 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return list;
 
 	}
+	
+	//Returns a list of Sensors for a Street
 	private List<Sensor> getAllSensorWithGivenStid(String stid) {
 		List<Sensor> list = new ArrayList<Sensor>();
 		try{
@@ -630,6 +646,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return list;
 	}
 
+	//Returns the Street with the given STID
 	@Override
 	public Street getStreet(String stid) {
 		Street st = null;
@@ -661,6 +678,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return st;
 	}
 
+	//Deletes the street with the given STID
 	@Override
 	public int deleteStreet(String stid) {
 		int returnValue = 0;
