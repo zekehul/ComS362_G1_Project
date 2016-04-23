@@ -128,7 +128,7 @@ public class StreetSensors {
 						}
 						break;
 				
-					//Command: updateServiceRequest, SR ID #, "Open"/"Closed"
+					//Command: updateServiceRequest, SR ID #, "Outstanding"/"Closed"
 					case "updateServiceRequest":
 						String sridToUpdate = sc.next();
 						String status = sc.next();

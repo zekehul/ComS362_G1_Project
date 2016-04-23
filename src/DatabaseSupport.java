@@ -326,7 +326,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 			}
 			else{
 				Statement stmt = connection.createStatement();
-				ResultSet rs=stmt.executeQuery("select * from ServiceRequest where sr_sts=0");
+				ResultSet rs=stmt.executeQuery("select * from ServiceRequest where srid="+srid);
 				
 				if(rs.next()){	
 					sr= new ServiceRequest();
@@ -348,11 +348,50 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	}
 
 	@Override
-	public int putServiceRequest(ServiceRequest sr) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean putServiceRequest(ServiceRequest sr) {
+		if(this.getServiceRequest(sr.getSrid()) == null){
+			return createServiceRequest(sr);
+		}
+		else{
+			return updateServiceRequest(sr);
+		}
 	}
-
+	public boolean createServiceRequest(ServiceRequest sr) {
+		boolean returnValue = true;
+		
+		try{
+			connection = this.getConnection();
+			String qs = "insert into ServiceRequest values ('" + 
+								sr.getSrid() +"', '" +
+								sr.getStatus() +"')";
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(qs);
+			stmt.close();
+			connection.close();
+		}
+		catch(SQLException sqle){
+			returnValue = false;
+		}
+		return returnValue;
+	}
+	private boolean updateServiceRequest(ServiceRequest sr) {
+		boolean returnValue = true;
+		
+		try{
+			connection = this.getConnection();
+			String qs = "update ServiceRequest set SR_STS='" + sr.getStatus() + "' " +
+											"where SRID='" + sr.getSrid() +"'";
+					
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(qs);
+			stmt.close();
+			connection.close();
+		}
+		catch(SQLException sqle){
+			returnValue = false;
+		}
+		return returnValue;
+	}
 	@Override
 	public List<ServiceRequest> getAllServiceRequests() {
 		List<ServiceRequest> list = new ArrayList<ServiceRequest>();

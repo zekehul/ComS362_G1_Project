@@ -14,7 +14,7 @@ public interface DatabaseSupportInterface {
 	public List<Sensor> getDeadSensors();
 	public boolean addServiceRequest(ServiceRequest sr);
 	public ServiceRequest getServiceRequest(String srid);
-	public int putServiceRequest(ServiceRequest sr);
+	public boolean putServiceRequest(ServiceRequest sr);
 	public List<ServiceRequest> getAllServiceRequests();
 	public List<ServiceRequest> getAllOutstandingServiceRequests();
 	public List<ServiceRequest> getAllClosedServiceRequests();

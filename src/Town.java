@@ -104,7 +104,9 @@ public class Town implements TownInterface {
 	@Override
 	public boolean updateServiceRequest(String srid, int stat) {
 		// TODO Auto-generated method stub
-		return false;
+		ServiceRequest sr = this.getDB().getServiceRequest(srid);
+		sr.setStatus(stat);
+		return this.getDB().putServiceRequest(sr);
 	}
 
 	@Override
