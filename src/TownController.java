@@ -79,46 +79,55 @@ public class TownController implements TownControllerInterface{
 		}
 	}
 
+	// function to search for a service request given a service request ID
 	@Override
 	public ServiceRequest searchServiceRequest(String srid) {
 		return this.getTownInstance().searchServiceRequest(srid);
 	}
 
+	// function to list all service requests
 	@Override
 	public List<ServiceRequest> getAllServiceRequests() {
 		return this.getTownInstance().getAllServiceRequests();
 	}
 
+	// function to update the status of the service request with ID of `srid`
 	@Override
 	public boolean updateServiceRequest(String srid, int stat) {
 		return this.getTownInstance().updateServiceRequest(srid, stat);
 	}
 
+	// function to list all streets in town
 	@Override
 	public List<Street> getAllStreets() {
 		return this.getTownInstance().getAllStreets();
 	}
 
+	// function to list all service requests that have not been closed
 	@Override
 	public List<ServiceRequest> getAllOutstandingServiceRequests() {
 		return this.getTownInstance().getAllOutstandingServiceRequests();
 	}
 
+	// function to list all service requests that have been closed
 	@Override
 	public List<ServiceRequest> getAllClosedServiceRequests() {
 		return this.getTownInstance().getAllClosedServiceRequests();
 	}
 
+	// function to add a street to the database
 	@Override
 	public boolean addStreet(String stid, String name) {
 		return this.getTownInstance().addStreet(stid,name);
 	}
 
+	// function to update the name of the street
 	@Override
 	public boolean updateStreet(String stid, String newName) {
 		return this.getTownInstance().updateStreet(stid,newName);
 	}
 
+	// function to remove the street from the database
 	@Override
 	public int deleteStreet(String stid) {
 		return this.getTownInstance().deleteStreet(stid);
