@@ -86,50 +86,42 @@ public class TownController implements TownControllerInterface{
 
 	@Override
 	public List<ServiceRequest> getAllServiceRequests() {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().getAllServiceRequests();
 	}
 
 	@Override
 	public boolean updateServiceRequest(String srid, int stat) {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().updateServiceRequest(srid, stat);
 	}
 
 	@Override
 	public List<Street> getAllStreets() {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().getAllStreets();
 	}
 
 	@Override
 	public List<ServiceRequest> getAllOutstandingServiceRequests() {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().getAllOutstandingServiceRequests();
 	}
 
 	@Override
 	public List<ServiceRequest> getAllClosedServiceRequests() {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().getAllClosedServiceRequests();
 	}
 
 	@Override
 	public boolean addStreet(String stid, String name) {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().addStreet(stid,name);
 	}
 
 	@Override
-	public boolean updateStreet(String name, String newName) {
-		// TODO Auto-generated method stub
-		return this.getTownInstance().updateStreet(name,newName);
+	public boolean updateStreet(String stid, String newName) {
+		return this.getTownInstance().updateStreet(stid,newName);
 	}
 
 	@Override
-	public int deleteStreet(String name) {
-		// TODO Auto-generated method stub
-		return this.getTownInstance().deleteStreet(name);
+	public int deleteStreet(String stid) {
+		return this.getTownInstance().deleteStreet(stid);
 	}
 
 }

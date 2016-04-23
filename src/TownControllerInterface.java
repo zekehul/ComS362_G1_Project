@@ -21,7 +21,7 @@ public interface TownControllerInterface {
 	public List<ServiceRequest> getAllOutstandingServiceRequests();
 	public List<ServiceRequest>getAllClosedServiceRequests();
 	public boolean addStreet(String stid, String name);
-	public boolean updateStreet(String name, String newName);
-	public int deleteStreet(String name);
+	public boolean updateStreet(String stid, String newName);
+	public int deleteStreet(String stid);
 
 }

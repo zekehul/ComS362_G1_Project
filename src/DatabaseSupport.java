@@ -425,15 +425,84 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	@Override
 	public List<Street> getAllStreets() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Street> list = new ArrayList<Street>();
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from Streets");
+				while(rs.next()){
+					Street st= new Street();
+					String stid =rs.getString("STID");
+					st.setStid(stid);
+					st.setName(rs.getString("STRT_NME"));
+					st.setSensors(getAllSensorWithGivenStid(stid));
+					list.add(st);
+				}
+				
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		
+		return list;
 	}
+
+	
 
 	@Override
 	public boolean putStreet(Street st) {
-		// TODO Auto-generated method stub
-		return false;
+		if(this.getStreet(st.getStid()) == null){
+			return createStreet(st);
+		}
+		else{
+			return updateStreet(st);
+		}
 	}
+	private boolean updateStreet(Street st) {
+		boolean returnValue = true;
+
+		try{
+			connection = this.getConnection();
+			String qs = "update Streets set STRT_NME='" + st.getName() +"' " +
+					"where STID='" + st.getStid() +"'";
+
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(qs);
+			stmt.close();
+			connection.close();
+		}
+		catch(SQLException sqle){
+			returnValue = false;
+		}
+		return returnValue;
+	}
+
+	public boolean createStreet(Street st) {
+		boolean returnValue = true;
+
+		try{
+			connection = this.getConnection();
+			String qs = "insert into Streets values ('" + 
+					st.getStid() +"', '" +
+					st.getName() +"')";
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(qs);
+			stmt.close();
+			connection.close();
+		}
+		catch(SQLException sqle){
+			returnValue = false;
+		}
+		return returnValue;
+	}
+
 	//0 is outstanding
 	@Override
 	public List<ServiceRequest> getAllOutstandingServiceRequests() {
@@ -528,6 +597,95 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		return list;
 
 	}
-	
+	private List<Sensor> getAllSensorWithGivenStid(String stid) {
+		List<Sensor> list = new ArrayList<Sensor>();
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from Sensors where stid="+stid);
+				while(rs.next()){
+					Sensor s= new Sensor();
+					s.setSid(rs.getString("SID"));
+					s.setStid(rs.getString("STID"));
+					s.setSection(rs.getInt("SECT"));
+					s.setThreshold(rs.getInt("THRSH"));
+					s.setValue(rs.getInt("VAL"));
+					s.setStatus(rs.getInt("SEN_STS"));
+					s.setSrid(rs.getString("SRID"));
+					list.add(s);
+				}
+
+				stmt.close();
+				connection.close();
+			}
+		}
+		catch(SQLException sqle){
+
+		}
+
+		return list;
+	}
+
+	@Override
+	public Street getStreet(String stid) {
+		Street st = null;
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from Streets where stid="+stid);
+				if(rs.next()){
+					st= new Street();
+					st.setStid(stid);
+					st.setName(rs.getString("STRT_NME"));
+					st.setSensors(getAllSensorWithGivenStid(stid));
+				}
+				else{
+					st=null;
+				}
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		
+		return st;
+	}
+
+	@Override
+	public int deleteStreet(String stid) {
+		int returnValue = 0;
+		if(this.getStreet(stid) == null){
+			returnValue = 1;
+		}
+		else{
+			try{
+				connection = this.getConnection();
+				if(connection ==null){
+					returnValue = -1;
+				}
+				else{
+					Statement stmt = connection.createStatement();
+					stmt.execute("delete from Streets where STID='"+stid+"'");
+					stmt.close();
+					connection.close();
+				}
+			}
+			catch(SQLException sqle){
+				returnValue = -1;
+			}
+		}
+		return returnValue;
+
+	}
 
 }

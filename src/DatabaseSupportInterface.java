@@ -19,6 +19,9 @@ public interface DatabaseSupportInterface {
 	public List<ServiceRequest> getAllOutstandingServiceRequests();
 	public List<ServiceRequest> getAllClosedServiceRequests();
 	public List<Street> getAllStreets();
+	public Street getStreet(String stid);
 	public boolean putStreet(Street st);
+	public boolean createStreet(Street st);
+	public int deleteStreet(String stid);
 	
 }

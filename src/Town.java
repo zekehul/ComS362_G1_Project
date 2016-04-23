@@ -91,19 +91,16 @@ public class Town implements TownInterface {
 
 	@Override
 	public ServiceRequest searchServiceRequest(String srid) {
-		// TODO Auto-generated method stub
 		return this.getDB().getServiceRequest(srid);
 	}
 
 	@Override
 	public List<ServiceRequest> getAllServiceRequests() {
-		// TODO Auto-generated method stub
 		return this.getDB().getAllServiceRequests();
 	}
 
 	@Override
 	public boolean updateServiceRequest(String srid, int stat) {
-		// TODO Auto-generated method stub
 		ServiceRequest sr = this.getDB().getServiceRequest(srid);
 		sr.setStatus(stat);
 		return this.getDB().putServiceRequest(sr);
@@ -111,38 +108,37 @@ public class Town implements TownInterface {
 
 	@Override
 	public List<Street> getAllStreets() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getAllStreets();
 	}
 
 	@Override
 	public List<ServiceRequest> getAllOutstandingServiceRequests() {
-		// TODO Auto-generated method stub
 		return this.getDB().getAllOutstandingServiceRequests();
 	}
 
 	@Override
 	public List<ServiceRequest> getAllClosedServiceRequests() {
-		// TODO Auto-generated method stub
 		return this.getDB().getAllClosedServiceRequests();
 	}
 
 	@Override
 	public boolean addStreet(String stid, String name) {
-		// TODO Auto-generated method stub
-		return false;
+		Street st = new Street();
+		st.setStid(stid);
+		st.setName(name);
+		return this.getDB().createStreet(st);
 	}
 
 	@Override
-	public boolean updateStreet(String name, String newName) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateStreet(String stid, String newName) {
+		Street st = this.getDB().getStreet(stid);
+		st.setName(newName);
+		return this.getDB().putStreet(st);
 	}
 
 	@Override
-	public int deleteStreet(String name) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteStreet(String stid) {
+		return this.getDB().deleteStreet(stid);
 	}
 
 	

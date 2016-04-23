@@ -37,12 +37,12 @@ public class StreetSensors {
 						}
 						break;
 				
-					//Command: updateStreet, street name, new name
+					//Command: updateStreet, stid, new name
 					case "updateStreet":
-						String stToUpdate = sc.next();
+						String stid = sc.next();
 						String newName = sc.next();
-						if(tc.updateStreet(stToUpdate, newName)){
-							System.out.println(stToUpdate+" was changed to "+newName);
+						if(tc.updateStreet(stid, newName)){
+							System.out.println(stid+"'s name was changed to "+newName);
 						}
 						else{
 							System.out.println("Operation Failed");
@@ -50,7 +50,7 @@ public class StreetSensors {
 						break;
 					
 				
-					//Command: deleteStreet, street name
+					//Command: deleteStreet, stid
 					case "deleteStreet":
 						String stToDelete = sc.next();
 						int result = tc.deleteStreet(stToDelete);
@@ -65,7 +65,7 @@ public class StreetSensors {
 								System.out.println("No such sensor exists");
 								break;
 						}
-				
+						break;
 					//Command addStreet, street ID #, street name
 					case "addStreet":
 						String stidToAdd = sc.next();
