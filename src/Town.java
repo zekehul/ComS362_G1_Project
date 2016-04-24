@@ -153,5 +153,47 @@ public class Town implements TownInterface {
 		return this.getDB().deleteStreet(stid);
 	}
 
+	@Override
+	public boolean addBridge(String bid, String name) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int deleteBridge(String bid) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean updateBridge(String bid, String name) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Bridge> getAllBridges() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Sensor> getSensorsInStreet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Sensor> getSensorsInBridge() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Sensor> getSensorsInServiceRequest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

@@ -9,7 +9,6 @@ public class Sensor implements SensorInterface{
 	private int threshold;
 	private int status;
 	private String srid;
-
 	@Override
 	public int updateStrain(int strainValue) {
 		value = strainValue;

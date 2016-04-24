@@ -133,4 +133,46 @@ public class TownController implements TownControllerInterface{
 		return this.getTownInstance().deleteStreet(stid);
 	}
 
+	@Override
+	public boolean addBridge(String bid, String name) {
+		// TODO Auto-generated method stub
+		return this.getTownInstance().addBridge(bid, name);
+	}
+
+	@Override
+	public int deleteBridge(String bid) {
+		// TODO Auto-generated method stub
+		return this.getTownInstance().deleteBridge(bid);
+	}
+
+	@Override
+	public boolean updateBridge(String bid, String name) {
+		// TODO Auto-generated method stub
+		return this.getTownInstance().updateBridge(bid, name);
+	}
+
+	@Override
+	public List<Bridge> getAllBridges() {
+		// TODO Auto-generated method stub
+		return this.getTownInstance().getAllBridges();
+	}
+
+	@Override
+	public List<Sensor> getSensorsInStreet() {
+		// TODO Auto-generated method stub
+		return this.getTownInstance().getSensorsInStreet();
+	}
+
+	@Override
+	public List<Sensor> getSensorsInBridge() {
+		// TODO Auto-generated method stub
+		return this.getTownInstance().getSensorsInBridge();
+	}
+
+	@Override
+	public List<Sensor> getSensorsInServiceRequest() {
+		// TODO Auto-generated method stub
+		return this.getTownInstance().getSensorsInServiceRequest();
+	}
+
 }

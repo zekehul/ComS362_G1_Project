@@ -23,4 +23,12 @@ public interface TownInterface {
 	public boolean addStreet(String stid, String name);
 	public boolean updateStreet(String stid, String newName);
 	public int deleteStreet(String stid);
+	
+	public boolean addBridge(String bid, String name);
+	public int deleteBridge(String bid);
+	public boolean updateBridge(String bid, String name);
+	public List<Bridge> getAllBridges();
+	public List<Sensor> getSensorsInStreet();
+	public List<Sensor> getSensorsInBridge();
+	public List<Sensor> getSensorsInServiceRequest();
 }
