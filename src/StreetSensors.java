@@ -27,7 +27,7 @@ public class StreetSensors {
 				String cmd = sc.next();
 
 				switch(cmd){
-				//Command: getAllSensorsInStreet, stid
+				//Command: getSensorsInStreet, stid
 				case "getSensorsInStreet":
 					String stidToGetSensors = sc.next();
 					List<Sensor> sensorsInStreet = tc.getSensorsInStreet(stidToGetSensors);
@@ -37,7 +37,7 @@ public class StreetSensors {
 						System.out.println(sen.getSid()+ "  " + sen.getValue());
 					}
 					break;
-				//Command: getAllBridges, bid
+				//Command: getSensorsInBridge, bid
 				case "getSensorsInBridge":
 					String bidToGetSensors = sc.next();
 					List<Sensor> sensorsInBridge = tc.getSensorsInBridge(bidToGetSensors);
@@ -47,7 +47,7 @@ public class StreetSensors {
 						System.out.println(sen.getSid()+ "  " + sen.getValue());
 					}
 					break;
-				//Command: getAllBridges, srid
+				//Command: getSensorsInServiceRequest, srid
 				case "getSensorsInServiceRequest":
 					String sridToGetSensors = sc.next();
 					List<Sensor> sensorsInServiceRequest = tc.getSensorsInServiceRequest(sridToGetSensors );
