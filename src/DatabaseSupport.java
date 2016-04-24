@@ -491,7 +491,25 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		}
 		return returnValue;
 	}
+	//Updates the given Bridge
+		private boolean updateBridge(Bridge br) {
+			boolean returnValue = true;
 
+			try{
+				connection = this.getConnection();
+				String qs = "update Bridges set BRDGE_NME='" + br.getName() +"' " +
+						"where BID='" + br.getBid() +"'";
+
+				Statement stmt = connection.createStatement();
+				stmt.executeUpdate(qs);
+				stmt.close();
+				connection.close();
+			}
+			catch(SQLException sqle){
+				returnValue = false;
+			}
+			return returnValue;
+		}
 	//Creates a new Street 
 	public boolean createStreet(Street st) {
 		boolean returnValue = true;
@@ -708,32 +726,119 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 
 	@Override
 	public List<Bridge> getAllBridges() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bridge> list = new ArrayList<Bridge>();
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from Bridges");
+				while(rs.next()){
+					Bridge br = new Bridge();
+					String bid =rs.getString("BID");
+					br.setBid(bid);
+					br.setName(rs.getString("BRDGE_NME"));
+					br.setSensors(getAllSensorWithGivenStid(bid));
+					list.add(br);
+				}
+				
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		
+		return list;
 	}
 
 	@Override
 	public Bridge getBridge(String bid) {
-		// TODO Auto-generated method stub
-		return null;
+		Bridge br = null;
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from Bridges where bid="+bid);
+				if(rs.next()){
+					br= new Bridge();
+					br.setBid(bid);
+					br.setName(rs.getString("BRDGE_NME"));
+					br.setSensors(getAllSensorWithGivenStid(bid));
+				}
+				else{
+					br=null;
+				}
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		
+		return br;
 	}
 
 	@Override
 	public boolean putBridge(Bridge br) {
-		// TODO Auto-generated method stub
-		return false;
+		if(this.getBridge(br.getBid()) == null){
+			return createBridge(br);
+		}
+		else{
+			return updateBridge(br);
+		}
 	}
 
 	@Override
 	public boolean createBridge(Bridge br) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean returnValue = true;
+		try{
+			connection = this.getConnection();
+			String qs = "insert into Bridges values ('" + 
+					br.getBid() +"', '" +
+					br.getName() +"')";
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(qs);
+			stmt.close();
+			connection.close();
+		}
+		catch(SQLException sqle){
+			returnValue = false;
+		}
+		return returnValue;
 	}
 
 	@Override
 	public int deleteBridge(String bid) {
-		// TODO Auto-generated method stub
-		return 0;
+		int returnValue = 0;
+		if(this.getBridge(bid) == null){
+			returnValue = 1;
+		}
+		else{
+			try{
+				connection = this.getConnection();
+				if(connection ==null){
+					returnValue = -1;
+				}
+				else{
+					Statement stmt = connection.createStatement();
+					stmt.execute("delete from Bridges where BID='"+bid+"'");
+					stmt.close();
+					connection.close();
+				}
+			}
+			catch(SQLException sqle){
+				returnValue = -1;
+			}
+		}
+		return returnValue;
 	}
 
 }
