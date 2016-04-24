@@ -613,7 +613,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	}
 	
 	//Returns a list of Sensors for a Street
-	private List<Sensor> getAllSensorWithGivenStid(String stid) {
+	public List<Sensor> getAllSensorWithGivenStid(String stid) {
 		List<Sensor> list = new ArrayList<Sensor>();
 		try{
 			connection = this.getConnection();
@@ -704,6 +704,36 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 		}
 		return returnValue;
 
+	}
+
+	@Override
+	public List<Bridge> getAllBridges() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Bridge getBridge(String bid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean putBridge(Bridge br) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean createBridge(Bridge br) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int deleteBridge(String bid) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

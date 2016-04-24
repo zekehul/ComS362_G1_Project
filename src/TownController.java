@@ -158,21 +158,21 @@ public class TownController implements TownControllerInterface{
 	}
 
 	@Override
-	public List<Sensor> getSensorsInStreet() {
+	public List<Sensor> getSensorsInStreet(String stid) {
 		// TODO Auto-generated method stub
-		return this.getTownInstance().getSensorsInStreet();
+		return this.getTownInstance().getSensorsInStreet(stid);
 	}
 
 	@Override
-	public List<Sensor> getSensorsInBridge() {
+	public List<Sensor> getSensorsInBridge(String bid) {
 		// TODO Auto-generated method stub
-		return this.getTownInstance().getSensorsInBridge();
+		return this.getTownInstance().getSensorsInBridge(bid);
 	}
 
 	@Override
-	public List<Sensor> getSensorsInServiceRequest() {
+	public List<Sensor> getSensorsInServiceRequest(String srid) {
 		// TODO Auto-generated method stub
-		return this.getTownInstance().getSensorsInServiceRequest();
+		return this.getTownInstance().getSensorsInServiceRequest(srid);
 	}
 
 }

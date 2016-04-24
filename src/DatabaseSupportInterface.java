@@ -23,5 +23,11 @@ public interface DatabaseSupportInterface {
 	public boolean putStreet(Street st);
 	public boolean createStreet(Street st);
 	public int deleteStreet(String stid);
+	public List<Bridge> getAllBridges();
+	public Bridge getBridge(String bid);
+	public boolean putBridge(Bridge br);
+	public boolean createBridge(Bridge br);
+	public int deleteBridge(String bid);
+	public List<Sensor> getAllSensorWithGivenStid(String stid);
 	
 }

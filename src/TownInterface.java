@@ -28,7 +28,7 @@ public interface TownInterface {
 	public int deleteBridge(String bid);
 	public boolean updateBridge(String bid, String name);
 	public List<Bridge> getAllBridges();
-	public List<Sensor> getSensorsInStreet();
-	public List<Sensor> getSensorsInBridge();
-	public List<Sensor> getSensorsInServiceRequest();
+	public List<Sensor> getSensorsInStreet(String stid);
+	public List<Sensor> getSensorsInBridge(String bid);
+	public List<Sensor> getSensorsInServiceRequest(String srid);
 }

@@ -155,44 +155,51 @@ public class Town implements TownInterface {
 
 	@Override
 	public boolean addBridge(String bid, String name) {
-		// TODO Auto-generated method stub
-		return false;
+		Bridge br= new Bridge();
+		br.setbid(bid);
+		br.setName(name);
+		return this.getDB().createBridge(br);
 	}
 
 	@Override
 	public int deleteBridge(String bid) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.getDB().deleteBridge(bid);
 	}
 
 	@Override
 	public boolean updateBridge(String bid, String name) {
 		// TODO Auto-generated method stub
-		return false;
+		Bridge br = this.getDB().getBridge(bid);
+		if(br==null){
+			return false;
+		}
+		br.setName(name);
+		return this.getDB().putBridge(br);
 	}
 
 	@Override
 	public List<Bridge> getAllBridges() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getAllBridges();
 	}
 
 	@Override
-	public List<Sensor> getSensorsInStreet() {
+	public List<Sensor> getSensorsInStreet(String stid) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getAllSensorWithGivenStid(stid);
 	}
 
 	@Override
-	public List<Sensor> getSensorsInBridge() {
+	public List<Sensor> getSensorsInBridge(String bid) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getAllSensorWithGivenStid(bid);
 	}
 
 	@Override
-	public List<Sensor> getSensorsInServiceRequest() {
+	public List<Sensor> getSensorsInServiceRequest(String srid) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getDB().getAllSensorWithGivenSrid(srid);
 	}
 
 	
