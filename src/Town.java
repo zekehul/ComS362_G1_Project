@@ -156,7 +156,7 @@ public class Town implements TownInterface {
 	@Override
 	public boolean addBridge(String bid, String name) {
 		Bridge br= new Bridge();
-		br.setbid(bid);
+		br.setBid(bid);
 		br.setName(name);
 		return this.getDB().createBridge(br);
 	}
