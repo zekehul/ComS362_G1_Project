@@ -27,6 +27,116 @@ public class StreetSensors {
 				String cmd = sc.next();
 
 				switch(cmd){
+///////////////////////////////////////////////////////////////////////////////////
+///										///
+///				Admin only commands				///
+///										///
+///////////////////////////////////////////////////////////////////////////////////
+				//Command: deleteBridge, bid
+				case "deleteBridge":
+					String brToDelete = sc.next();
+					int result = tc.deleteBridge(brToDelete);
+					switch(result){
+					case -1:
+						System.out.println("Database Error");
+						break;
+					case 0:
+						System.out.println(brToDelete+" deleted");
+						break;
+					case 1:
+						System.out.println("No such Bridge exists");
+						break;
+					}
+					break;
+				//Command addBridge, Bridge ID #, Bridge name
+				case "addBridge":
+					String bidToAdd = sc.next();
+					String brName = sc.next();
+					if(tc.addBridge(bidToAdd, brName)){
+						System.out.println(brName+" created with ID "+bidToAdd);
+					}
+					else{
+						System.out.println("Operation Failed");
+					}
+					break;
+
+				//Command: deleteStreet, stid
+				case "deleteStreet":
+					String stToDelete = sc.next();
+					int result1 = tc.deleteStreet(stToDelete);
+					switch(result1){
+					case -1:
+						System.out.println("Database Error");
+						break;
+					case 0:
+						System.out.println(stToDelete+" deleted");
+						break;
+					case 1:
+						System.out.println("No such street exists");
+						break;
+					}
+					break;
+				//Command addStreet, street ID #, street name
+				case "addStreet":
+					String stidToAdd = sc.next();
+					String stName = sc.next();
+					if(tc.addStreet(stidToAdd, stName)){
+						System.out.println(stName+" created with ID "+stidToAdd);
+					}
+					else{
+						System.out.println("Operation Failed");
+					}
+					break;
+
+				//Command: addSensor, Sensor ID, Street Name, Section number, threshold
+				case "addSensor": 
+					String sidToCreate = sc.next();
+					String street = sc.next();
+					int sect = sc.nextInt();
+					int threshold = sc.nextInt();
+
+					if(tc.addSensor(sidToCreate, street, sect, threshold)){
+						System.out.println("Sensor created at " +street+ ", Sect "+ sect+ ", THRSH="+threshold);
+					}
+					else{
+						System.out.println("A Sensor already exists at that location");
+					}
+					break;
+
+				//Command: deleteSensor, Sensor ID
+				case "deleteSensor":
+					String sidToDelete = sc.next();
+					result = tc.deleteSensor(sidToDelete);
+					switch(result){
+					case -1:
+						System.out.println("Database Error");
+						break;
+					case 0:
+						System.out.println("Sensor "+sidToDelete+" deleted");
+						break;
+					case 1:
+						System.out.println("No such sensor exists");
+						break;
+					}
+					break;
+
+				//Command: updateStrain, Sensor ID, new strain value
+				case "updateStrain":
+					String sidToUpdate = sc.next();
+					int newStrain = sc.nextInt();
+					if(tc.updateStrain(sidToUpdate, newStrain)){
+						System.out.println("Sensor "+sidToUpdate+" strain updated to "+newStrain);
+					}
+					else{
+						System.out.println("Update Failed");
+					}
+					break;
+
+///////////////////////////////////////////////////////////////////////////////////
+///										///
+///			Admin and Maintenance commands				///
+///										///
+///////////////////////////////////////////////////////////////////////////////////
 				//Command: getSensorsInStreet, stid
 				case "getSensorsInStreet":
 					String stidToGetSensors = sc.next();
@@ -66,7 +176,7 @@ public class StreetSensors {
 					}
 					break;
 
-					//Command: updateBridge, bid, new name
+				//Command: updateBridge, bid, new name
 				case "updateBridge":
 					String bidToUpdate = sc.next();
 					String newBridgeName = sc.next();
@@ -79,34 +189,7 @@ public class StreetSensors {
 					break;
 
 
-					//Command: deleteBridge, bid
-				case "deleteBridge":
-					String brToDelete = sc.next();
-					int result = tc.deleteBridge(brToDelete);
-					switch(result){
-					case -1:
-						System.out.println("Database Error");
-						break;
-					case 0:
-						System.out.println(brToDelete+" deleted");
-						break;
-					case 1:
-						System.out.println("No such Bridge exists");
-						break;
-					}
-					break;
-					//Command addBridge, Bridge ID #, Bridge name
-				case "addBridge":
-					String bidToAdd = sc.next();
-					String brName = sc.next();
-					if(tc.addBridge(bidToAdd, brName)){
-						System.out.println(brName+" created with ID "+bidToAdd);
-					}
-					else{
-						System.out.println("Operation Failed");
-					}
-					break;
-					//Command: getAllStreets
+				//Command: getAllStreets
 				case "getAllStreets":
 					List<Street> streets = tc.getAllStreets();
 					System.out.println("Street ID    Street Name");
@@ -115,7 +198,7 @@ public class StreetSensors {
 					}
 					break;
 
-					//Command: updateStreet, stid, new name
+				//Command: updateStreet, stid, new name
 				case "updateStreet":
 					String stid = sc.next();
 					String newName = sc.next();
@@ -127,36 +210,7 @@ public class StreetSensors {
 					}
 					break;
 
-
-					//Command: deleteStreet, stid
-				case "deleteStreet":
-					String stToDelete = sc.next();
-					int result1 = tc.deleteStreet(stToDelete);
-					switch(result1){
-					case -1:
-						System.out.println("Database Error");
-						break;
-					case 0:
-						System.out.println(stToDelete+" deleted");
-						break;
-					case 1:
-						System.out.println("No such street exists");
-						break;
-					}
-					break;
-					//Command addStreet, street ID #, street name
-				case "addStreet":
-					String stidToAdd = sc.next();
-					String stName = sc.next();
-					if(tc.addStreet(stidToAdd, stName)){
-						System.out.println(stName+" created with ID "+stidToAdd);
-					}
-					else{
-						System.out.println("Operation Failed");
-					}
-					break;
-
-					//Command: getAllClosedServiceRequests
+				//Command: getAllClosedServiceRequests
 				case "getAllClosedServiceRequests":
 					List<ServiceRequest> csrList = tc.getAllClosedServiceRequests();
 					System.out.println("The following Service Requests are Closed:");
@@ -167,7 +221,7 @@ public class StreetSensors {
 					System.out.println(closedOutput);
 					break;
 
-					//Command: getAllOutstandingServiceRequests
+				//Command: getAllOutstandingServiceRequests
 				case "getAllOutstandingServiceRequests":
 					List<ServiceRequest> osrList = tc.getAllOutstandingServiceRequests();
 					System.out.println("The following Service Requests are Outstanding:");
@@ -178,7 +232,7 @@ public class StreetSensors {
 					System.out.println(outstandingOutput);
 					break;
 
-					//Command: getAllServiceRequests
+				//Command: getAllServiceRequests
 				case "getAllServiceRequests":
 					List<ServiceRequest> srList = tc.getAllServiceRequests();
 					for(ServiceRequest sr:srList){
@@ -191,7 +245,7 @@ public class StreetSensors {
 					}
 					break;
 
-					//Command: searchServiceRequest, SR ID #
+				//Command: searchServiceRequest, SR ID #
 				case "searchServiceRequest":
 					String sridToFind = sc.next();
 					ServiceRequest sr = tc.searchServiceRequest(sridToFind);
@@ -206,7 +260,7 @@ public class StreetSensors {
 					}
 					break;
 
-					//Command: updateServiceRequest, SR ID #, "Outstanding"/"Closed"
+				//Command: updateServiceRequest, SR ID #, "Outstanding"/"Closed"
 				case "updateServiceRequest":
 					String sridToUpdate = sc.next();
 					String status = sc.next();
@@ -233,7 +287,7 @@ public class StreetSensors {
 
 					break;
 
-					//Command: createServiceRequest, ID #, Sensor ID 1, Sensor ID 2, ...etc
+				//Command: createServiceRequest, ID #, Sensor ID 1, Sensor ID 2, ...etc
 				case "createServiceRequest":
 					List<String> SensorIds = new ArrayList<String>();
 					String newSRId = sc.next(); 
@@ -249,58 +303,14 @@ public class StreetSensors {
 
 					break;
 
-					//Command: updateStrain, Sensor ID, new strain value
-				case "updateStrain":
-					String sidToUpdate = sc.next();
-					int newStrain = sc.nextInt();
-					if(tc.updateStrain(sidToUpdate, newStrain)){
-						System.out.println("Sensor "+sidToUpdate+" strain updated to "+newStrain);
-					}
-					else{
-						System.out.println("Update Failed");
-					}
-					break;
-
-					//Command: addSensor, Sensor ID, Street Name, Section number, threshold
-				case "addSensor": 
-					String sidToCreate = sc.next();
-					String street = sc.next();
-					int sect = sc.nextInt();
-					int threshold = sc.nextInt();
-
-					if(tc.addSensor(sidToCreate, street, sect, threshold)){
-						System.out.println("Sensor created at " +street+ ", Sect "+ sect+ ", THRSH="+threshold);
-					}
-					else{
-						System.out.println("A Sensor already exists at that location");
-					}
-					break;
-
-					//Command: deleteSensor, Sensor ID
-				case "deleteSensor":
-					String sidToDelete = sc.next();
-					result = tc.deleteSensor(sidToDelete);
-					switch(result){
-					case -1:
-						System.out.println("Database Error");
-						break;
-					case 0:
-						System.out.println("Sensor "+sidToDelete+" deleted");
-						break;
-					case 1:
-						System.out.println("No such sensor exists");
-						break;
-					}
-					break;
-
-					//Command: getSensor, Sensor ID
+				//Command: getSensor, Sensor ID
 				case "getSensor":
 					String sidToSearch = sc.next();
 					Sensor s = tc.searchForSensor(sidToSearch);
 					System.out.println("Sensor "+s.getSid()+" has value "+s.getValue());
 					break;
 
-					//Command: resetSensor, Sensor ID
+				//Command: resetSensor, Sensor ID
 				case "resetSensor":
 					String sidToReset = sc.next();
 					if(tc.resetSensor(sidToReset)){
@@ -311,7 +321,7 @@ public class StreetSensors {
 					}
 					break;
 
-					//Command: getAllSensors
+				//Command: getAllSensors
 				case "getAllSensors":
 					List<Sensor> list = tc.getAllSensors();
 					System.out.println("ID________VALUE__");
@@ -320,7 +330,7 @@ public class StreetSensors {
 					}
 					break;
 
-					//Command: getCriticalSensors
+				//Command: getCriticalSensors
 				case "getCriticalSensors":
 					List<Sensor> list1 = tc.getCriticalSensors();
 					for(Sensor sen:list1){
@@ -328,7 +338,7 @@ public class StreetSensors {
 					}
 					break;
 
-					//Command: getDeadSensors
+				//Command: getDeadSensors
 				case "getDeadSensors":
 					List<Sensor> list2 = tc.getDeadSensors();
 					for(Sensor sen:list2){
@@ -336,7 +346,7 @@ public class StreetSensors {
 					}
 					break;
 
-					//Exits the Application
+				//Exits the Application
 				case "exit": exit = true; 
 				break;
 
