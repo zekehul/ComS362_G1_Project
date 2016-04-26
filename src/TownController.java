@@ -135,44 +135,47 @@ public class TownController implements TownControllerInterface{
 
 	@Override
 	public boolean addBridge(String bid, String name) {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().addBridge(bid, name);
 	}
 
 	@Override
 	public int deleteBridge(String bid) {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().deleteBridge(bid);
 	}
 
 	@Override
 	public boolean updateBridge(String bid, String name) {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().updateBridge(bid, name);
 	}
 
 	@Override
 	public List<Bridge> getAllBridges() {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().getAllBridges();
 	}
 
 	@Override
 	public List<Sensor> getSensorsInStreet(String stid) {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().getSensorsInStreet(stid);
 	}
 
 	@Override
 	public List<Sensor> getSensorsInBridge(String bid) {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().getSensorsInBridge(bid);
 	}
 
 	@Override
 	public List<Sensor> getSensorsInServiceRequest(String srid) {
-		// TODO Auto-generated method stub
 		return this.getTownInstance().getSensorsInServiceRequest(srid);
+	}
+
+	@Override
+	public int logon(String username, String pwd) {
+		return this.getTownInstance().logon(username, pwd);
+	}
+
+	@Override
+	public boolean logoff() {
+		return this.getTownInstance().resetUserSingleton();
 	}
 
 }
