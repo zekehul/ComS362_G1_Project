@@ -132,6 +132,30 @@ public class StreetSensors {
 					}
 					break;
 
+				//Command: updateBridge, bid, new name
+				case "updateBridge":
+					String bidToUpdate = sc.next();
+					String newBridgeName = sc.next();
+					if(tc.updateBridge(bidToUpdate, newBridgeName)){
+						System.out.println(bidToUpdate+"'s bridge name was changed to "+newBridgeName);
+					}
+					else{
+						System.out.println("Operation Failed");
+					}
+					break;
+
+				//Command: updateStreet, stid, new name
+				case "updateStreet":
+					String stid = sc.next();
+					String newName = sc.next();
+					if(tc.updateStreet(stid, newName)){
+						System.out.println(stid+"'s street name was changed to "+newName);
+					}
+					else{
+						System.out.println("Operation Failed");
+					}
+					break;
+
 ///////////////////////////////////////////////////////////////////////////////////
 ///										///
 ///			Admin and Maintenance commands				///
@@ -176,18 +200,6 @@ public class StreetSensors {
 					}
 					break;
 
-				//Command: updateBridge, bid, new name
-				case "updateBridge":
-					String bidToUpdate = sc.next();
-					String newBridgeName = sc.next();
-					if(tc.updateBridge(bidToUpdate, newBridgeName)){
-						System.out.println(bidToUpdate+"'s bridge name was changed to "+newBridgeName);
-					}
-					else{
-						System.out.println("Operation Failed");
-					}
-					break;
-
 
 				//Command: getAllStreets
 				case "getAllStreets":
@@ -195,18 +207,6 @@ public class StreetSensors {
 					System.out.println("Street ID    Street Name");
 					for(Street s:streets){
 						System.out.println(s.getStid()+"     "+s.getName());
-					}
-					break;
-
-				//Command: updateStreet, stid, new name
-				case "updateStreet":
-					String stid = sc.next();
-					String newName = sc.next();
-					if(tc.updateStreet(stid, newName)){
-						System.out.println(stid+"'s street name was changed to "+newName);
-					}
-					else{
-						System.out.println("Operation Failed");
 					}
 					break;
 
