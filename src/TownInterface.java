@@ -31,4 +31,8 @@ public interface TownInterface {
 	public List<Sensor> getSensorsInStreet(String stid);
 	public List<Sensor> getSensorsInBridge(String bid);
 	public List<Sensor> getSensorsInServiceRequest(String srid);
+	
+	public int logon(String username, String pwd);
+	public boolean setUserSingleton(User u);
+	public boolean resetUserSingleton();
 }

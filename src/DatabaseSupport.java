@@ -46,7 +46,6 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	//Returns Sensor object with the given Sensor ID
 	@Override
 	public Sensor getSensor(String sid) {
-		// TODO Auto-generated method stub
 		Sensor s = null;
 		try{
 			connection = this.getConnection();
@@ -241,7 +240,6 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	//Inserts the given ServiceRequest into the table
 	@Override
 	public boolean addServiceRequest(ServiceRequest sr) {
-		//TODO
 		boolean returnValue = true;		
 		try{
 			connection = this.getConnection();
@@ -298,7 +296,6 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 	
 	//Gets the Connection Object
 	private Connection getConnection() {
-		// TODO Auto-generated method stub
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			
@@ -839,6 +836,36 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 			}
 		}
 		return returnValue;
+	}
+
+	@Override
+	public User getUser(String username) {
+		User u = null;
+		try{
+			connection = this.getConnection();
+			if(connection ==null){
+				return null;
+			}
+			else{
+				Statement stmt = connection.createStatement();
+				ResultSet rs=stmt.executeQuery("select * from Users where USRNME="+username);
+				if(rs.next()){
+					u= new User();
+					u.setUsername(username);
+					u.setPwd(rs.getString("PWD"));
+				}
+				else{
+					u=null;
+				}
+				stmt.close();
+				connection.close();
+				}
+		}
+		catch(SQLException sqle){
+			
+		}
+		
+		return u;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Town implements TownInterface {
 	
+	private User userSingleton = null;
 	private DatabaseSupport db = null;
 	
 	@Override
@@ -69,7 +70,6 @@ public class Town implements TownInterface {
 	
 	@Override
 	public boolean createServiceRequest(String srid, String[] sid_arr) {
-		//TODO
 		// create serviceRequest
 		// for each element in `sid_arr`
 		// grab the `Sensor` with the ID `sid_arr[i]`
@@ -163,13 +163,11 @@ public class Town implements TownInterface {
 
 	@Override
 	public int deleteBridge(String bid) {
-		// TODO Auto-generated method stub
 		return this.getDB().deleteBridge(bid);
 	}
 
 	@Override
 	public boolean updateBridge(String bid, String name) {
-		// TODO Auto-generated method stub
 		Bridge br = this.getDB().getBridge(bid);
 		if(br==null){
 			return false;
@@ -180,26 +178,48 @@ public class Town implements TownInterface {
 
 	@Override
 	public List<Bridge> getAllBridges() {
-		// TODO Auto-generated method stub
 		return this.getDB().getAllBridges();
 	}
 
 	@Override
 	public List<Sensor> getSensorsInStreet(String stid) {
-		// TODO Auto-generated method stub
 		return this.getDB().getAllSensorWithGivenStid(stid);
 	}
 
 	@Override
 	public List<Sensor> getSensorsInBridge(String bid) {
-		// TODO Auto-generated method stub
 		return this.getDB().getAllSensorWithGivenStid(bid);
 	}
 
 	@Override
 	public List<Sensor> getSensorsInServiceRequest(String srid) {
-		// TODO Auto-generated method stub
 		return this.getDB().getAllSensorWithGivenSrid(srid);
+	}
+
+	@Override
+	public int logon(String username, String pwd) {
+		User u = this.getDB().getUser(username);
+		if(u == null){
+			return -1;
+		}
+		else if(u.validate(pwd) == false){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+	}
+
+	@Override
+	public boolean setUserSingleton(User u) {
+		this.userSingleton = u;
+		return true;
+	}
+
+	@Override
+	public boolean resetUserSingleton() {
+		this.userSingleton = null;
+		return true;
 	}
 
 	

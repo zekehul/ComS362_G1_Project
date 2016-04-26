@@ -29,5 +29,6 @@ public interface DatabaseSupportInterface {
 	public boolean createBridge(Bridge br);
 	public int deleteBridge(String bid);
 	public List<Sensor> getAllSensorWithGivenStid(String stid);
+	public User getUser(String username);
 	
 }
