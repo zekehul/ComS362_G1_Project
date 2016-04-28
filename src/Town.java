@@ -206,6 +206,7 @@ public class Town implements TownInterface {
 			return 1;
 		}
 		else{
+			setUserSingleton(u);
 			return 0;
 		}
 	

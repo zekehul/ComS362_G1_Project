@@ -72,7 +72,7 @@ public class TownController implements TownControllerInterface{
 	// function to create a singleton of `town`
 	private Town getTownInstance(){
 		if(town == null){
-			return new Town();
+			return town = new Town();
 		}
 		else{
 			return town;
