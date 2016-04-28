@@ -208,6 +208,7 @@ public class Town implements TownInterface {
 		else{
 			return 0;
 		}
+	
 	}
 
 	@Override

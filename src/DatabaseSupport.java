@@ -848,11 +848,12 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 			}
 			else{
 				Statement stmt = connection.createStatement();
-				ResultSet rs=stmt.executeQuery("select * from Users where USRNME="+username);
+				ResultSet rs=stmt.executeQuery("select * from Users where USRNME='"+username+"'");
 				if(rs.next()){
 					u= new User();
 					u.setUsername(username);
 					u.setPwd(rs.getString("PWD"));
+					u.setUserType(Integer.parseInt(rs.getString("Type")));
 				}
 				else{
 					u=null;
@@ -862,7 +863,7 @@ public class DatabaseSupport implements DatabaseSupportInterface{
 				}
 		}
 		catch(SQLException sqle){
-			
+			System.out.println("SQL Exception");
 		}
 		
 		return u;
