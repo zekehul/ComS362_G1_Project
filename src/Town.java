@@ -222,5 +222,10 @@ public class Town implements TownInterface {
 		return true;
 	}
 
+	@Override
+	public int getUserType() {
+		return this.userSingleton.getUserType();
+	}
+
 	
 }

@@ -178,4 +178,9 @@ public class TownController implements TownControllerInterface{
 		return this.getTownInstance().resetUserSingleton();
 	}
 
+	@Override
+	public int getUserType() {
+		return this.getTownInstance().getUserType();
+	}
+
 }

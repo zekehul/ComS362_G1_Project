@@ -34,6 +34,7 @@ public interface TownControllerInterface {
 	
 	public int logon(String username, String pwd);
 	public boolean logoff();
+	public int getUserType();
 
 
 }

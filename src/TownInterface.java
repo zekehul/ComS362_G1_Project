@@ -35,4 +35,5 @@ public interface TownInterface {
 	public int logon(String username, String pwd);
 	public boolean setUserSingleton(User u);
 	public boolean resetUserSingleton();
+	public int getUserType();
 }
